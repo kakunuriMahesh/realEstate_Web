@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.desktop-nav {
+    display: none;
+  }
+  
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex !important;
+    }
+  
+    .mobile-nav {
+      display: none !important;
+    }
+  }
+
+
+  @media (min-width: 768px) {
+    .custom-md-block {
+      display: block !important;
+    }
+    .custom-md-flex {
+      display: flex !important;
+    }
+    .custom-md-hidden {
+      display: none !important;
+    }
+  }
+  
