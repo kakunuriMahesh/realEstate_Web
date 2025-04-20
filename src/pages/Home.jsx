@@ -1,0 +1,102 @@
+import { useState, useEffect } from "react";
+import { getHouses } from "../services/api";
+import HouseCard from "../components/HouseCard";
+import bannerImg from "../assets/home_img.jpg";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setMenuState } from "../store/stateManage";
+import ServicesScroll from "./ServicesScroll";
+import About from "./About";
+import Services from "./Services";
+import Testimonials from "./Testimonials";
+import Contact from "./Contact";
+
+const Home = () => {
+  const [houses, setHouses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const menustate = useSelector((state) => state.stateManage.menuState);
+  console.log(menustate, "menustate");
+
+  // const brands = ["Appartment", "Townhouse", "Villa", "Rental", "Sale"];
+
+  useEffect(() => {
+    getHouses()
+      .then((res) => {
+        setHouses(res.data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const dispatch = useDispatch();
+
+  const setViewOptions = () => {
+    dispatch(setMenuState(false));
+  };
+
+  return (
+    <div>
+      <div
+        onClick={setViewOptions}
+        style={{
+          backgroundImage: `url(${bannerImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "end",
+        }}
+      >
+        <div className="py-16 pt-[140px] bg-gradient-to-t from-black to-transparent">
+          <div className="max-w-6xl p-4 text-white slide-in-text">
+            <h1 className="text-4xl font-semibold md:text-7xl">
+              {/* Find Your Dream Home */}
+              Find affordable or luxury homes in Northeastern Ohio with Heights
+              Realty!
+            </h1>
+            <p className="mt-4 text-lg">
+              Explore our listings for buying, renting, or selling properties.
+            </p>
+          </div>
+        </div>
+
+        {/* <div className="bg-black overflow-hidden py-4">
+        <div className="brand-track">
+          {brands.concat(brands).map((brand, idx) => (
+            <Link
+              key={idx}
+              to={`/${brand.toLowerCase()}`}
+              className="brand-item"
+            >
+              {brand}
+            </Link>
+          ))}
+        </div>
+      </div> */}
+
+        {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {loading ? (
+          <p className="text-gray-600">Loading...</p>
+        ) : houses.length === 0 ? (
+          <p className="text-gray-600">No listings available.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {houses.map((house) => (
+              <HouseCard key={house._id} house={house} />
+            ))}
+          </div>
+        )}
+      </div> */}
+      </div>
+      <ServicesScroll />
+      <About/>
+      <Services/>
+      <Testimonials/>
+      <Contact/>
+    </div>
+  );
+};
+
+export default Home;

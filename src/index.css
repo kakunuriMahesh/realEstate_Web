@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-md-block {
+    display: block !important;
+  }
+  .custom-md-flex {
+    display: flex !important;
+  }
+  .custom-md-hidden {
+    display: none !important;
+  }
+}
+
+.brand-scroller {
+  overflow: hidden;
+  white-space: nowrap;
+  /* background: linear-gradient(to right, #0f9d58, #34a853); */
+  padding: 20px 0;
+  position: relative;
+}
+
+.brand-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 33s linear infinite;
+}
+
+.brand-track:hover {
+  animation-play-state: paused;
+}
+
+.brand-item {
+  display: inline-block;
+  margin: 0 50px;
+  text-decoration: none;
+  font-size: 70px; /* ✅ Proper font size */
+  font-weight: 600;
+  color: white;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.brand-item:hover {
+  transform: scale(1.1);
+  color: #ffd700;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/*  */
+
+.slide-in-text {
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInLeft 1.2s ease-out forwards;
+}
+
+/* Keyframes for animation */
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
