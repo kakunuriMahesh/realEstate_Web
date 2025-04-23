@@ -10,7 +10,11 @@ import ServicesScroll from "./ServicesScroll";
 import About from "./About";
 import Services from "./Services";
 import Testimonials from "./Testimonials";
-import Contact from "./Contact";
+import ContactForm from "./ContactForm";
+import WhyChooseUs from "./WhyChooseUs";
+import RelatedHouses from "../Components/RelatedHouses";
+import DetailedView from "./DetailedView";
+import ScrollAnimation from "../components/ScrollAnimation";
 
 const Home = () => {
   const [houses, setHouses] = useState([]);
@@ -20,16 +24,33 @@ const Home = () => {
 
   // const brands = ["Appartment", "Townhouse", "Villa", "Rental", "Sale"];
 
-  useEffect(() => {
-    getHouses()
-      .then((res) => {
-        setHouses(res.data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+  // useEffect(() => {
+  //   getHouses()
+  //     .then((res) => {
+  //       setHouses(res.data);
+  //       setLoading(false);
+  //     })
+  //     .catch(() => setLoading(false));
+  // }, []);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchRelatedHouses = async () => {
+      try {
+        const response = await getHouses();
+        const houses = response.data;
+
+        setHouses(houses);
+        // setRelatedHouses(houses.slice(0, 3)); // Limit to 3 houses
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching related houses:", error);
+        setLoading(false);
+      }
+    };
+    fetchRelatedHouses();
+  }, []);
 
   const setViewOptions = () => {
     dispatch(setMenuState(false));
@@ -91,10 +112,18 @@ const Home = () => {
       </div> */}
       </div>
       <ServicesScroll />
-      <About/>
-      <Services/>
-      <Testimonials/>
-      <Contact/>
+      <About />
+      <Services />
+      <div className=" flex items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 gap-3">
+        {houses.map((house) => (
+          <ScrollAnimation key={house._id}>
+            <HouseCard house={house} />
+           </ScrollAnimation>
+        ))}
+      </div>
+      <Testimonials />
+      <ContactForm />
+      <WhyChooseUs />
     </div>
   );
 };
