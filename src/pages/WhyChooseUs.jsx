@@ -53,7 +53,7 @@ const WhyChooseUs = () => {
           EXPLORE OUR RANGE OF EXPERT REAL ESTATE SERVICES
         </h1>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-center md:justify-start items-center ">
         {services.map((service, index) => (
           <div
             key={index}

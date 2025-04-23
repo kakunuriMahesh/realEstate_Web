@@ -2,6 +2,7 @@ import React from "react";
 import aboutImg from "../assets/about_img.jpg";
 import { useLocation } from "react-router-dom";
 import teamImg from "../assets/team_img.jpg";
+import StatsCounter from "../Components/StatsCounter";
 
 const About = () => {
   const location = useLocation();
@@ -37,7 +38,7 @@ const About = () => {
           ) : (
             <h1 className="text-3xl font-bold text-black">About Us</h1>
           )}
-          <div className="flex md:flex-row justify-between mt-8">
+          <div className="min-md:flex md:flex-row justify-between mt-8">
             <div className="">
               <h2 className="text-2xl font-semibold text-gray-800">
                 Our Vision
@@ -62,6 +63,7 @@ const About = () => {
               />
             </div>
             <div className="min-sm:hidden lg:block ">
+           
               <h2 className="text-2xl font-semibold text-gray-800">
                 Our Expertise
               </h2>
@@ -121,6 +123,7 @@ const About = () => {
               </p>
             </div>
           </div>
+          {path === "about" && <StatsCounter />}
         </div>
       </div>
     </div>
