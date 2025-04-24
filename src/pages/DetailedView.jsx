@@ -132,7 +132,7 @@ const DetailedView = () => {
             {images.map((image, index) => (
               <img
                 key={index}
-                className="rounded-[30px] h-[268px] w-[500px] object-cover cursor-pointer"
+                className="rounded-[30px] h-[268px] w-[500px] object-cover cursor-pointer zoom-in"
                 src={image}
                 alt={`${house.title} ${index + 1}`}
                 onClick={() => openModal(index)}

@@ -83,34 +83,6 @@ const Home = () => {
             </p>
           </div>
         </div>
-
-        {/* <div className="bg-black overflow-hidden py-4">
-        <div className="brand-track">
-          {brands.concat(brands).map((brand, idx) => (
-            <Link
-              key={idx}
-              to={`/${brand.toLowerCase()}`}
-              className="brand-item"
-            >
-              {brand}
-            </Link>
-          ))}
-        </div>
-      </div> */}
-
-        {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {loading ? (
-          <p className="text-gray-600">Loading...</p>
-        ) : houses.length === 0 ? (
-          <p className="text-gray-600">No listings available.</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {houses.map((house) => (
-              <HouseCard key={house._id} house={house} />
-            ))}
-          </div>
-        )}
-      </div> */}
       </div>
       <ServicesScroll />
       <About />
@@ -119,7 +91,7 @@ const Home = () => {
         {houses.map((house) => (
           <ScrollAnimation key={house._id}>
             <HouseCard house={house} />
-           </ScrollAnimation>
+          </ScrollAnimation>
         ))}
       </div>
       {/* Stats Section */}
