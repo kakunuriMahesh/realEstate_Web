@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { getHouses } from "../services/api";
 import HouseCard from "../components/HouseCard";
-import bannerImg from "../assets/home_img.jpg";
+// import bannerImg from "../assets/home_img.jpg";
+import bannerImg from "../assets/HomeImage.jpg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setMenuState } from "../store/stateManage";
+import { setMenuState, setServiceState } from "../store/stateManage";
 import ServicesScroll from "./ServicesScroll";
 import About from "./About";
 import Services from "./Services";
@@ -56,6 +57,7 @@ const Home = () => {
 
   const setViewOptions = () => {
     dispatch(setMenuState(false));
+    dispatch(setServiceState(false))
   };
 
   return (

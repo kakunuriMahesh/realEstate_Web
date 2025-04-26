@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Send } from "lucide-react";
 import contactImg from "../assets/contactform.jpg";
+import handleScrollToTop from "../Components/handleScrollToTop";
 
 const Contact = () => {
+   
   const [formData, setFormData] = useState({
     name: "",
     email: "",

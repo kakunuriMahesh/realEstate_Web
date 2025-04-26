@@ -32,7 +32,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gray-900 text-gray-300 py-12 px-4 md:px-8 rounded-2xl
 ">
-          <div className=" flex ">
+          <div className=" flex footer_flex gap-1">
             <Link to="/">
               <img
                 src={logo}

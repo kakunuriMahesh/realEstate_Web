@@ -5,10 +5,12 @@ import teamImg from "../assets/team_img.jpg";
 import StatsCounter from "../Components/StatsCounter";
 import AnimatedSection from "../Components/AnimatedSection";
 import SearchHouses from "../Components/SearchHouses";
+import handleScrollToTop from "../Components/handleScrollToTop";
 
 const About = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
+   
   return (
     <div>
       {path === "about" && (

@@ -5,7 +5,7 @@ import HouseCard from "../components/HouseCard";
 import ScrollAnimation from "../components/ScrollAnimation";
 import CustomDropdown from "../components/CustomDropdown";
 import { Search, SlidersHorizontal, X } from "lucide-react";
-
+ 
 const SearchHouses = () => {
   const [filters, setFilters] = useState({
     city: "",
@@ -29,6 +29,8 @@ const SearchHouses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+   
 
   useEffect(() => {
     const fetchAllHouses = async () => {
@@ -377,7 +379,7 @@ const SearchHouses = () => {
           </h1>
           <button
             onClick={() => setIsFilterOpen(true)}
-            className="md:hidden flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="md:hidden flex items-center px-3 py-2 bg-green-800 text-white rounded-md hover:bg-green-900"
             aria-label="Open filters"
           >
             <SlidersHorizontal className="h-5 w-5 mr-2" />
@@ -413,7 +415,7 @@ const SearchHouses = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between items-center p-6 border-b border-gray-200">
-                  <h2 className="text-lg font-semibold text-gray-800">
+                  <h2 style={{color:"black"}} className="text-lg font-semibold">
                     Filter Properties
                   </h2>
                   <button

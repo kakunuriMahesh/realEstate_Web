@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import AnimatedSection from "../Components/AnimatedSection";
 import { Link, useLocation } from "react-router-dom";
-import testimonialsImg from "../assets/testimonials.jpg"
+import testimonialsImg from "../assets/testimonials.jpg";
+import handleScrollToTop from "../Components/handleScrollToTop";
 
 const testimonials = [
   {
@@ -153,62 +154,64 @@ const Testimonials = () => {
 
   return (
     <div>
-       {path === "testimonials" && (
-              <div
-                style={{
-                  backgroundImage: `url(${testimonialsImg})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  height: "100vh",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "end",
-                }}
-              >
-                <div className="py-16 pt-[140px] bg-gradient-to-t from-black to-transparent">
-                  <div className="max-w-6xl p-4 text-white slide-in-text">
-                    <h1 className="text-4xl font-semibold md:text-7xl">Testimonials</h1>
-                    <p className="mt-4 text-lg">
-                      Explore our listings for buying, renting, or selling properties.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-    <div className="bg-teal-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-4xl font-bold text-white mb-2">
-          What Our Clients Say
-        </h1>
-        <p className="text-lg text-teal-200 mb-10">
-          Hear from our satisfied customers about their experiences.
-        </p>
-
+      {path === "testimonials" && (
         <div
-          className="relative w-full max-w-5xl mx-auto overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          ref={carouselRef}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+          style={{
+            backgroundImage: `url(${testimonialsImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "end",
+          }}
         >
-          {/* Blur Overlays */}
-          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-teal-900 to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-teal-900 to-transparent z-10"></div>
+          <div className="py-16 pt-[140px] bg-gradient-to-t from-black to-transparent">
+            <div className="max-w-6xl p-4 text-white slide-in-text">
+              <h1 className="text-4xl font-semibold md:text-7xl">
+                Testimonials
+              </h1>
+              <p className="mt-4 text-lg">
+                Explore our listings for buying, renting, or selling properties.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="bg-teal-900 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl font-bold text-white mb-2">
+            What Our Clients Say
+          </h1>
+          <p className="text-lg text-teal-200 mb-10">
+            Hear from our satisfied customers about their experiences.
+          </p>
 
           <div
-            className="flex"
-            style={{
-              transform: `translateX(-${scrollOffset}px)`,
-              animation: isPaused ? "none" : "scroll 40s linear infinite",
-            }}
+            className="relative w-full max-w-5xl mx-auto overflow-hidden"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            ref={carouselRef}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            {/* Duplicate testimonials for seamless loop */}
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
-              // <AnimatedSection>
-              // </AnimatedSection>
+            {/* Blur Overlays */}
+            <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-teal-900 to-transparent z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-teal-900 to-transparent z-10"></div>
+
+            <div
+              className="flex"
+              style={{
+                transform: `translateX(-${scrollOffset}px)`,
+                animation: isPaused ? "none" : "scroll 40s linear infinite",
+              }}
+            >
+              {/* Duplicate testimonials for seamless loop */}
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                // <AnimatedSection>
+                // </AnimatedSection>
                 <div
                   key={`${testimonial.name}-${index}`}
                   className="flex-shrink-0 w-[280px] sm:w-[300px] mx-2 zoom-in"
@@ -234,11 +237,11 @@ const Testimonials = () => {
                     <p className="text-sm ">{testimonial.role}</p>
                   </div>
                 </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* Navigation Arrows */}
-          {/* <button
+            {/* Navigation Arrows */}
+            {/* <button
             onClick={prevTestimonial}
             className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-teal-800 text-white p-3 rounded-full hover:bg-teal-700 focus:outline-none transition-all duration-200 hover:scale-110"
             aria-label="Previous Testimonial"
@@ -253,8 +256,8 @@ const Testimonials = () => {
             <BiRightArrow className="h-5 w-5" />
           </button> */}
 
-          {/* Navigation Dots */}
-          {/* <div className="flex justify-center space-x-2 mt-6">
+            {/* Navigation Dots */}
+            {/* <div className="flex justify-center space-x-2 mt-6">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -268,21 +271,21 @@ const Testimonials = () => {
               />
             ))}
           </div> */}
+          </div>
+
+          {/* View All Button */}
+          <div className="mt-8">
+            <Link to="/testimonials" onClick={handleScrollToTop}>
+              <button className="bg-teal-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-teal-600 focus:outline-none transition-all duration-200">
+                View All
+              </button>
+            </Link>
+          </div>
         </div>
 
-        {/* View All Button */}
-        <div className="mt-8">
-          <Link to="/testimonials">
-          <button className="bg-teal-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-teal-600 focus:outline-none transition-all duration-200">
-            View All
-          </button>
-          </Link>
-        </div>
-      </div>
-
-      {/* CSS for Auto-Scroll Animation */}
-      <style>
-        {`
+        {/* CSS for Auto-Scroll Animation */}
+        <style>
+          {`
           @keyframes scroll {
             0% {
               transform: translateX(0);
@@ -292,8 +295,8 @@ const Testimonials = () => {
             }
           }
         `}
-      </style>
-    </div>
+        </style>
+      </div>
     </div>
   );
 };

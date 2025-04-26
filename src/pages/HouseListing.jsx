@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getHouses } from "../services/api";
 import HouseCard from "../components/HouseCard";
 import ScrollAnimation from "../components/ScrollAnimation";
+import handleScrollToTop from "../Components/handleScrollToTop";
 
 const HouseListing = () => {
   const [houses, setHouses] = useState([]);
@@ -67,7 +68,7 @@ const HouseListing = () => {
             ))}
           </div>
         </ScrollAnimation>
-        <ScrollAnimation>
+        
           {loading ? (
             <p className="text-gray-600 text-center">Loading...</p>
           ) : error ? (
@@ -76,7 +77,7 @@ const HouseListing = () => {
             <p className="text-gray-600 text-center">No properties found.</p>
           ) : (
             <div className="flex">
-              <div className="flex flex-wrap justify-start items-start gap-2">
+              <div className="flex flex-wrap justify-start items-start gap-2 ">
                 {filteredHouses.slice(0, 3).map((house) => (
                   <HouseCard
                     key={house._id}
@@ -104,14 +105,18 @@ const HouseListing = () => {
                 )} */}
 
                 {filteredHouses.length > 3 && (
-                  <div className="relative h-[330px] w-fit overflow-hidden rounded-lg">
+                  <div className="h-[330px] w-fit  overflow-hidden rounded-lg">
                     <div
-                      className="relative h-[400px] w-[250px] sm:w-[280px] lg:w-[300px] cursor-pointer group rounded-lg shadow-md overflow-hidden"
-                      onClick={() => navigate("/properties")}
+                      className="relative h-[400px]  w-[250px] sm:w-[280px] lg:w-[300px] cursor-pointer group rounded-lg shadow-md overflow-hidden"
+                      onClick={() => {
+                        navigate("/properties");
+                        handleScrollToTop();
+                      }}
+                      
                     >
                       {/* Background Image with Scaling */}
                       <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-150"
+                        className="absolute  inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-150"
                         style={{
                           backgroundImage: `url(${filteredHouses[3]?.coverImg.url})`,
                         }}
@@ -120,7 +125,9 @@ const HouseListing = () => {
                       <div className="absolute inset-0 bg-black opacity-[0.5] group-hover:bg-opacity-50 transition-all duration-300"></div>
                       {/* Stable Text */}
                       <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-semibold z-40">
-                        <span className="p-3 bg-green-900 rounded-md">View All</span>
+                        <span className="p-3 bg-green-900 rounded-md">
+                          View All
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -128,7 +135,6 @@ const HouseListing = () => {
               </div>
             </div>
           )}
-        </ScrollAnimation>
       </div>
     </div>
   );

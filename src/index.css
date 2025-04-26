@@ -22,6 +22,25 @@ h2{
   top: 1.5rem;
 }
 
+@media screen and (max-width: 640px) {
+  .house-card{
+    width: 100%
+  }
+
+  .house-detail-images{
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+  }
+  .detail_image{
+    width: 200px;
+    height: 100px;
+  }
+  .footer_flex{
+  flex-direction: column;
+  }
+}
+
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex !important;
@@ -30,9 +49,11 @@ h2{
     flex-direction: row;
   }
 
+
   .mobile-nav {
     display: none !important;
   }
+
 }
 
 @media (min-width: 768px) {
@@ -45,6 +66,7 @@ h2{
   .custom-md-hidden {
     display: none !important;
   }
+  
 }
 
 .brand-scroller {
