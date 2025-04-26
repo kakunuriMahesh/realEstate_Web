@@ -302,8 +302,8 @@ const DetailedView = () => {
 
           {/* Right Section */}
           <div className="md:w-1/3 ">
-          <AnimatedSection animationClass="zoom-in">
-            <section className="p-6 space-y-4 shadow-lg bg-white rounded-2xl right-section">
+          <AnimatedSection animationClass="zoom-in  right-section">
+            <section className="p-6 space-y-4 shadow-lg bg-white rounded-2xl">
               <div className="text-center">
                 <h2
                   style={{ color: "black" }}
