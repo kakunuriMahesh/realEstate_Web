@@ -16,6 +16,7 @@ import RelatedHouses from "../Components/RelatedHouses";
 import DetailedView from "./DetailedView";
 import ScrollAnimation from "../components/ScrollAnimation";
 import StatsCounter from "../Components/StatsCounter";
+import HouseListing from "./HouseListing";
 
 const Home = () => {
   const [houses, setHouses] = useState([]);
@@ -84,23 +85,26 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <ServicesScroll />
-      <About />
-      <Services />
-      <div className=" flex flex-wrap justify-center md:justify-start items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 gap-3">
+      <div className="bg-green-950">
+        <ServicesScroll />
+        <About />
+        {/* <Services /> */}
+        {/* <div className=" flex flex-wrap justify-center md:justify-start items-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 gap-3">
         {houses.map((house) => (
           <ScrollAnimation key={house._id}>
             <HouseCard house={house} />
           </ScrollAnimation>
         ))}
+      </div> */}
+        <HouseListing />
+        {/* Stats Section */}
+        <ScrollAnimation>
+          <StatsCounter />
+        </ScrollAnimation>
+        <WhyChooseUs />
+        <Testimonials />
+        <ContactForm />
       </div>
-      {/* Stats Section */}
-      <ScrollAnimation>
-        <StatsCounter />
-      </ScrollAnimation>
-      <Testimonials />
-      <ContactForm />
-      <WhyChooseUs />
     </div>
   );
 };

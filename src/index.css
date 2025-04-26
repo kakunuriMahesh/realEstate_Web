@@ -5,10 +5,29 @@
 .desktop-nav {
   display: none;
 }
+p{
+  color: beige;
+}
+h2{
+  color: antiquewhite;
+}
+.property-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+.right-section {
+  position: sticky;
+  top: 1.5rem;
+}
 
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex !important;
+  }
+  .property-container {
+    flex-direction: row;
   }
 
   .mobile-nav {

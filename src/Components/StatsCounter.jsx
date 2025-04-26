@@ -49,33 +49,33 @@ const StatsCounter = () => {
       prefix: "$",
       suffix: "B",
       label: "In Total Lifetime Sales",
-      icon: <DollarSign className="h-8 w-8 text-gray-500" />,
+      icon: <DollarSign className="h-8 w-8 text-amber-200 mr-2" />,
     },
     {
       value: 3000,
       suffix: "+",
       label: "Sold Homes",
-      icon: <Home className="h-8 w-8 text-gray-500" />,
+      icon: <Home className="h-8 w-8 text-amber-200 mr-2" />,
     },
     {
       value: 155_000_000,
       prefix: "$",
       suffix: "M+",
       label: "In Sales in 2023",
-      icon: <TrendingUp className="h-8 w-8 text-gray-500" />,
+      icon: <TrendingUp className="h-8 w-8 text-amber-200 mr-2" />,
     },
     {
       value: 1,
       prefix: "#",
       label: "Ohio's Real Estate Agent",
-      icon: <Award className="h-8 w-8 text-gray-500" />,
+      icon: <Award className="h-8 w-8 text-amber-200 mr-2" />,
     },
   ];
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-green-950 py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8">
+        <h2 className="text-3xl font-bold mb-8">
           Our Achievements
         </h2>
         <div className="flex flex-wrap justify-center gap-6">
@@ -84,7 +84,7 @@ const StatsCounter = () => {
               key={index}
               className="flex flex-col items-center text-center p-6 rounded-lg"
             >
-              <div className="text-4xl font-bold flex items-center text-gray-800 mt-4">
+              <div className="text-4xl text-amber-50 font-bold flex items-center mt-4">
                 {stat.icon}
                 <Counter
                   value={stat.value}
@@ -93,7 +93,7 @@ const StatsCounter = () => {
                   duration={2}
                 />
               </div>
-              <p className="text-gray-600 mt-2">{stat.label}</p>
+              <p className="mt-2">{stat.label}</p>
             </div>
           ))}
         </div>

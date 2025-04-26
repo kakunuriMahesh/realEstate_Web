@@ -1,39 +1,41 @@
+import { BadgeDollarSignIcon, Heart, House, SaveAll, Search } from "lucide-react";
 import React from "react";
+import { BiPurchaseTag } from "react-icons/bi";
 
 const WhyChooseUs = () => {
   const services = [
     {
-      icon: "🏠",
+      icon: <SaveAll/>,
       title: "Property Sales",
       description:
         "Expertly promoting and selling your property to attract qualified buyers.",
     },
     {
-      icon: "💬",
+      icon: <BiPurchaseTag/>,
       title: "Buyer Representation",
       description:
         "Guiding you through the home-buying process, prioritizing your interests.",
     },
     {
-      icon: "📄",
+      icon: <BadgeDollarSignIcon/>,
       title: "Rental Management",
       description:
         "Managing tenant relations, maintenance, and finances to maximize rental returns.",
     },
     {
-      icon: "📊",
+      icon: <House/>,
       title: "Investment Consulting",
       description:
         "Providing strategic advice to help you capitalize on real estate opportunities.",
     },
     {
-      icon: "🔍",
+      icon: <Search/>,
       title: "Property Valuation",
       description:
         "Accurately assessing your property’s value for sales, purchases, or investments.",
     },
     {
-      icon: "🤝",
+      icon: <Heart/>,
       title: "Tailored Solutions",
       description:
         "Delivering customized real estate services aligned with your specific goals.",
@@ -43,15 +45,10 @@ const WhyChooseUs = () => {
   return (
     <div className="container mx-auto p-6 max-w-7xl">
       <div className="text-center mb-8">
-        <a
-          href="#"
-          className="text-sm text-gray-500 hover:underline mb-2 inline-block"
-        >
+      <h1 className="text-4xl font-bold text-white mb-2">
           Why Choose Us
-        </a>
-        <h1 className="text-3xl font-bold text-gray-900">
-          EXPLORE OUR RANGE OF EXPERT REAL ESTATE SERVICES
         </h1>
+        
       </div>
       <div className="flex flex-wrap justify-center md:justify-start items-center ">
         {services.map((service, index) => (
@@ -66,7 +63,7 @@ const WhyChooseUs = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {service.title}
               </h3>
-              <p className="text-gray-600 text-sm">{service.description}</p>
+              <p style={{color:"gray"}} className=" text-sm">{service.description}</p>
             </div>
           </div>
         ))}

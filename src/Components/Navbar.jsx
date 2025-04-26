@@ -110,18 +110,466 @@
 
 // TODO: anna code
 
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import React, { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+// import { Menu, X, ChevronDown } from "lucide-react";
+// import logo from "../assets/logo.png";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setMenuState } from "../store/stateManage";
+
+// const Navbar = () => {
+//   const [isServicesOpen, setIsServicesOpen] = useState(false);
+//   const menustate = useSelector((state) => state.stateManage.menuState);
+
+//   // TODO: bharatTheme
+//   const [lastScrollY, setLastScrollY] = useState(0);
+//   const [showNavbar, setShowNavbar] = useState(true);
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const currentScrollY = window.scrollY;
+
+//       // Show navbar if scrolling up or at top
+//       if (currentScrollY < lastScrollY || currentScrollY <= 100) {
+//         setShowNavbar(true);
+//       }
+//       // Hide navbar if scrolling down past navbar height (100px)
+//       else if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+//         setShowNavbar(false);
+//       }
+
+//       setLastScrollY(currentScrollY);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, [lastScrollY]);
+
+//   // TODO: bharatTheme
+//   // TODO: high-end theme
+//   const [scrollPos, setScrollPos] = useState(0);
+//   const [scrollDir, setScrollDir] = useState("up");
+//   const [atTop, setAtTop] = useState(true);
+
+//   useEffect(() => {
+//     let lastScroll = window.scrollY;
+
+//     const handleScroll = () => {
+//       const currentScroll = window.scrollY;
+
+//       setScrollDir(currentScroll > lastScroll ? "down" : "up");
+//       setScrollPos(currentScroll);
+//       setAtTop(currentScroll <= 10); // near top
+
+//       lastScroll = currentScroll;
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+//   // TODO: high-end theme
+
+//   const toggleServicesMenu = () => {
+//     setIsServicesOpen(!isServicesOpen);
+//   };
+
+//   const dispatch = useDispatch();
+
+//   const toggleMobileMenu = () => {
+//     dispatch(setMenuState(!menustate));
+//     if (isServicesOpen) setIsServicesOpen(false);
+//   };
+
+//   return (
+//     <>
+//       {/* High-end theme */}
+//       <nav
+//         className={`w-full fixed top-0 left-0 z-40 transition-all duration-500 ${
+//           !atTop ? "opacity-0 pointer-events-none" : "opacity-100"
+//         } text-white`}
+//       >
+//         <div className="max-w-screen-xl mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8">
+//           <div className="flex justify-between h-12 xs:h-14 sm:h-16">
+//             <div className="flex items-center">
+//               <Link to="/">
+//                 <img
+//                   className="h-[80px] xs:h-[100px] sm:h-[120px] w-[120px] xs:w-[160px] sm:w-[200px]"
+//                   src={logo}
+//                   alt="Real Estate Logo"
+//                 />
+//               </Link>
+//             </div>
+
+//             {/* Desktop Menu */}
+//             <div className="hidden custom-md-flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
+//               <Link
+//                 to="/"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 Home
+//               </Link>
+//               <Link
+//                 to="/about"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 About Us
+//               </Link>
+
+//               <div className="relative">
+//                 <button
+//                   onClick={toggleServicesMenu}
+//                   className="text-gray-600  font-semibold  hover:text-gray-900 flex items-center text-sm md:text-base lg:text-lg"
+//                 >
+//                   Services
+//                   <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
+//                 </button>
+//                 {isServicesOpen && (
+//                   <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-white shadow-lg rounded-md py-2">
+//                     <Link
+//                       to="/services/sell"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Sell
+//                     </Link>
+//                     <Link
+//                       to="/services/rental"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Rental
+//                     </Link>
+//                     <Link
+//                       to="/services/purchase"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Purchase
+//                     </Link>
+//                     <Link
+//                       to="/services/management"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Management
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+
+//               <Link
+//                 to="/contact"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 Contact Us
+//               </Link>
+//               <Link
+//                 to="/testimonials"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 Testimonials
+//               </Link>
+//             </div>
+
+//             {/* Mobile Menu Button */}
+//             <div className="flex items-center custom-md-hidden">
+//               <button
+//                 onClick={toggleMobileMenu}
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
+//               >
+//                 {menustate ? (
+//                   <X className="h-5 xs:h-6 w-5 xs:w-6" />
+//                 ) : (
+//                   <Menu className="h-5 xs:h-6 w-5 xs:w-6" />
+//                 )}
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Mobile Menu */}
+//         {menustate && (
+//           <div className="custom-md-hidden">
+//             <div className="px-2 xs:px-3 pt-2 pb-3 space-y-1">
+//               <Link
+//                 to="/"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Home
+//               </Link>
+//               <Link
+//                 to="/about"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 About Us
+//               </Link>
+//               <div>
+//                 <button
+//                   onClick={toggleServicesMenu}
+//                   className="w-full text-left px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900 flex justify-between items-center"
+//                 >
+//                   Services
+//                   <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
+//                 </button>
+//                 {isServicesOpen && (
+//                   <div className="pl-4 xs:pl-6 space-y-1">
+//                     <Link
+//                       to="/services/sell"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Sell
+//                     </Link>
+//                     <Link
+//                       to="/services/rental"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Rental
+//                     </Link>
+//                     <Link
+//                       to="/services/purchase"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Purchase
+//                     </Link>
+//                     <Link
+//                       to="/services/management"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Management
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//               <Link
+//                 to="/contact"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Contact Us
+//               </Link>
+//               <Link
+//                 to="/testimonials"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Testimonials
+//               </Link>
+//             </div>
+//           </div>
+//         )}
+//       </nav>
+
+//       {/* Background Navbar - appears on scroll up */}
+//       <nav
+//         className={`w-full  shadow-2xl fixed top-0 left-0 z-50 transition-all duration-500 ${
+//           !atTop && scrollDir === "up" ? "translate-y-0" : "-translate-y-full"
+//         } bg-white shadow-lg`}
+//       >
+//         <div className="max-w-screen-xl mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8">
+//           <div className="flex justify-between h-12 xs:h-14 sm:h-16">
+//             <div className="flex items-center">
+//               <Link to="/">
+//                 <img
+//                   className="h-[80px] xs:h-[100px] sm:h-[120px] w-[120px] xs:w-[160px] sm:w-[200px]"
+//                   src={logo}
+//                   alt="Real Estate Logo"
+//                 />
+//               </Link>
+//             </div>
+
+//             {/* Desktop Menu */}
+//             <div className="hidden custom-md-flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
+//               <Link
+//                 to="/"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 Home
+//               </Link>
+//               <Link
+//                 to="/about"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 About Us
+//               </Link>
+
+//               <div className="relative">
+//                 <button
+//                   onClick={toggleServicesMenu}
+//                   className="text-gray-600  font-semibold  hover:text-gray-900 flex items-center text-sm md:text-base lg:text-lg"
+//                 >
+//                   Services
+//                   <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
+//                 </button>
+//                 {isServicesOpen && (
+//                   <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-white shadow-lg rounded-md py-2">
+//                     <Link
+//                       to="/services/sell"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Sell
+//                     </Link>
+//                     <Link
+//                       to="/services/rental"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Rental
+//                     </Link>
+//                     <Link
+//                       to="/services/purchase"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Purchase
+//                     </Link>
+//                     <Link
+//                       to="/services/management"
+//                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+//                       onClick={() => setIsServicesOpen(false)}
+//                     >
+//                       Management
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+
+//               <Link
+//                 to="/contact"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 Contact Us
+//               </Link>
+//               <Link
+//                 to="/testimonials"
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+//               >
+//                 Testimonials
+//               </Link>
+//             </div>
+
+//             {/* Mobile Menu Button */}
+//             <div className="flex items-center custom-md-hidden">
+//               <button
+//                 onClick={toggleMobileMenu}
+//                 className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
+//               >
+//                 {menustate ? (
+//                   <X className="h-5 xs:h-6 w-5 xs:w-6" />
+//                 ) : (
+//                   <Menu className="h-5 xs:h-6 w-5 xs:w-6" />
+//                 )}
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Mobile Menu */}
+//         {menustate && (
+//           <div className="custom-md-hidden">
+//             <div className="px-2 xs:px-3 pt-2 pb-3 space-y-1">
+//               <Link
+//                 to="/"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Home
+//               </Link>
+//               <Link
+//                 to="/about"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 About Us
+//               </Link>
+//               <div>
+//                 <button
+//                   onClick={toggleServicesMenu}
+//                   className="w-full text-left px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900 flex justify-between items-center"
+//                 >
+//                   Services
+//                   <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
+//                 </button>
+//                 {isServicesOpen && (
+//                   <div className="pl-4 xs:pl-6 space-y-1">
+//                     <Link
+//                       to="/services/sell"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Sell
+//                     </Link>
+//                     <Link
+//                       to="/services/rental"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Rental
+//                     </Link>
+//                     <Link
+//                       to="/services/purchase"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Purchase
+//                     </Link>
+//                     <Link
+//                       to="/services/management"
+//                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                       onClick={toggleMobileMenu}
+//                     >
+//                       Management
+//                     </Link>
+//                   </div>
+//                 )}
+//               </div>
+//               <Link
+//                 to="/contact"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Contact Us
+//               </Link>
+//               <Link
+//                 to="/testimonials"
+//                 className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+//                 onClick={toggleMobileMenu}
+//               >
+//                 Testimonials
+//               </Link>
+//             </div>
+//           </div>
+//         )}
+//       </nav>
+//     </>
+//   );
+// };
+
+// export default Navbar;
+
+// TODO: fix the services tab
+
+import React, { useEffect, useState, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/Cloverrealitylogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setMenuState } from "../store/stateManage";
 
 const Navbar = () => {
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const menustate = useSelector((state) => state.stateManage.menuState);
+  const desktopServicesRef = useRef(null);
+  const mobileServicesRef = useRef(null);
 
-  // TODO: bharatTheme
+  // bharatTheme
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
 
@@ -145,8 +593,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // TODO: bharatTheme
-  // TODO: high-end theme
+  // high-end theme
   const [scrollPos, setScrollPos] = useState(0);
   const [scrollDir, setScrollDir] = useState("up");
   const [atTop, setAtTop] = useState(true);
@@ -167,40 +614,70 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  // TODO: high-end theme
 
-  const toggleServicesMenu = () => {
-    setIsServicesOpen(!isServicesOpen);
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        desktopServicesRef.current &&
+        !desktopServicesRef.current.contains(e.target) &&
+        mobileServicesRef.current &&
+        !mobileServicesRef.current.contains(e.target)
+      ) {
+        setIsDesktopServicesOpen(false);
+        setIsMobileServicesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleDesktopServicesMenu = () => {
+    setIsDesktopServicesOpen(!isDesktopServicesOpen);
+    setIsMobileServicesOpen(false);
+  };
+
+  const toggleMobileServicesMenu = () => {
+    setIsMobileServicesOpen(!isMobileServicesOpen);
+    setIsDesktopServicesOpen(false);
   };
 
   const dispatch = useDispatch();
 
   const toggleMobileMenu = () => {
     dispatch(setMenuState(!menustate));
-    if (isServicesOpen) setIsServicesOpen(false);
+    setIsDesktopServicesOpen(false);
+    setIsMobileServicesOpen(false);
   };
+
+  const handleServiceItemClick = () => {
+    setIsDesktopServicesOpen(false);
+    setIsMobileServicesOpen(false);
+    if (menustate) {
+      dispatch(setMenuState(false));
+    }
+  };
+
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
 
   return (
     <>
-      {/* <nav className="bg-white w-[98%] fixed mx-2 mt-2 z-50 p-3 xs:p-4 sm:p-[15px] opacity-[0.8] rounded-[12px] shadow-2xl"> */}
-      {/* TODO: bharatTheme */}
-      {/* <nav
-      className={`${
-         showNavbar ? "translate-y-0" : "-translate-y-full"
-       } transition-transform duration-500 z-50 fixed w-[98%] bg-white mx-2 mt-2 p-3 xs:p-4 sm:p-[15px] opacity-[0.8] rounded-[12px] shadow-2xl`}
-     > */}
-      {/* TODO: High-end theme */}
+      {/* High-end theme */}
       <nav
         className={`w-full fixed top-0 left-0 z-40 transition-all duration-500 ${
           !atTop ? "opacity-0 pointer-events-none" : "opacity-100"
         } text-white`}
+      
+        
       >
         <div className="max-w-screen-xl mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex justify-between h-12 xs:h-14 sm:h-16">
             <div className="flex items-center">
               <Link to="/">
                 <img
-                  className="h-[80px] xs:h-[100px] sm:h-[120px] w-[120px] xs:w-[160px] sm:w-[200px]"
+                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
                   src={logo}
                   alt="Real Estate Logo"
                 />
@@ -211,52 +688,52 @@ const Navbar = () => {
             <div className="hidden custom-md-flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
               <Link
                 to="/"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                className="text-gray-600  font-semibold hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
                 Home
               </Link>
               <Link
                 to="/about"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
                 About Us
               </Link>
 
-              <div className="relative">
+              <div className="relative" ref={desktopServicesRef}>
                 <button
-                  onClick={toggleServicesMenu}
-                  className="text-gray-600 hover:text-gray-900 flex items-center text-sm md:text-base lg:text-lg"
+                  onClick={toggleDesktopServicesMenu}
+                  className="text-gray-600  font-semibold  hover:text-gray-900 flex items-center text-sm md:text-base lg:text-lg"
                 >
                   Services
                   <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
                 </button>
-                {isServicesOpen && (
+                {isDesktopServicesOpen && atTop && (
                   <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-white shadow-lg rounded-md py-2">
                     <Link
                       to="/services/sell"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Sell
                     </Link>
                     <Link
                       to="/services/rental"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Rental
                     </Link>
                     <Link
                       to="/services/purchase"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Purchase
                     </Link>
                     <Link
                       to="/services/management"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Management
                     </Link>
@@ -265,16 +742,17 @@ const Navbar = () => {
               </div>
 
               <Link
+                to="/properties"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
+              >
+                Properties
+              </Link>
+
+              <Link
                 to="/contact"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
                 Contact Us
-              </Link>
-              <Link
-                to="/testimonials"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
-              >
-                Testimonials
               </Link>
             </div>
 
@@ -282,7 +760,7 @@ const Navbar = () => {
             <div className="flex items-center custom-md-hidden">
               <button
                 onClick={toggleMobileMenu}
-                className="text-gray-600 hover:text-gray-900 focus:outline-none"
+                className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
               >
                 {menustate ? (
                   <X className="h-5 xs:h-6 w-5 xs:w-6" />
@@ -300,53 +778,53 @@ const Navbar = () => {
             <div className="px-2 xs:px-3 pt-2 pb-3 space-y-1">
               <Link
                 to="/"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
                 onClick={toggleMobileMenu}
               >
                 Home
               </Link>
               <Link
                 to="/about"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
                 onClick={toggleMobileMenu}
               >
                 About Us
               </Link>
-              <div>
+              <div ref={mobileServicesRef}>
                 <button
-                  onClick={toggleServicesMenu}
-                  className="w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 flex justify-between items-center"
+                  onClick={toggleMobileServicesMenu}
+                  className="w-full text-left px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900 flex justify-between items-center"
                 >
                   Services
                   <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
                 </button>
-                {isServicesOpen && (
+                {isMobileServicesOpen && atTop && (
                   <div className="pl-4 xs:pl-6 space-y-1">
                     <Link
                       to="/services/sell"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Sell
                     </Link>
                     <Link
                       to="/services/rental"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Rental
                     </Link>
                     <Link
                       to="/services/purchase"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Purchase
                     </Link>
                     <Link
                       to="/services/management"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Management
                     </Link>
@@ -354,18 +832,18 @@ const Navbar = () => {
                 )}
               </div>
               <Link
+                to="/properties"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+                onClick={toggleMobileMenu}
+              >
+                Properties
+              </Link>
+              <Link
                 to="/contact"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
                 onClick={toggleMobileMenu}
               >
                 Contact Us
-              </Link>
-              <Link
-                to="/testimonials"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                onClick={toggleMobileMenu}
-              >
-                Testimonials
               </Link>
             </div>
           </div>
@@ -374,7 +852,7 @@ const Navbar = () => {
 
       {/* Background Navbar - appears on scroll up */}
       <nav
-        className={`w-full  shadow-2xl fixed top-0 left-0 z-50 transition-all duration-500 ${
+        className={`w-full shadow-2xl fixed top-0 left-0 z-50 transition-all duration-500 ${
           !atTop && scrollDir === "up" ? "translate-y-0" : "-translate-y-full"
         } bg-white shadow-lg`}
       >
@@ -383,7 +861,7 @@ const Navbar = () => {
             <div className="flex items-center">
               <Link to="/">
                 <img
-                  className="h-[80px] xs:h-[100px] sm:h-[120px] w-[120px] xs:w-[160px] sm:w-[200px]"
+                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
                   src={logo}
                   alt="Real Estate Logo"
                 />
@@ -394,70 +872,69 @@ const Navbar = () => {
             <div className="hidden custom-md-flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
               <Link
                 to="/"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
                 Home
               </Link>
               <Link
                 to="/about"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
                 About Us
               </Link>
 
-              <div className="relative">
+              <div className="relative" ref={desktopServicesRef}>
                 <button
-                  onClick={toggleServicesMenu}
-                  className="text-gray-600 hover:text-gray-900 flex items-center text-sm md:text-base lg:text-lg"
+                  onClick={toggleDesktopServicesMenu}
+                  className="text-gray-600  font-semibold  hover:text-gray-900 flex items-center text-sm md:text-base lg:text-lg"
                 >
                   Services
                   <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
                 </button>
-                {isServicesOpen && (
+                {isDesktopServicesOpen && !atTop && scrollDir === "up" && (
                   <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-white shadow-lg rounded-md py-2">
                     <Link
                       to="/services/sell"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Sell
                     </Link>
                     <Link
                       to="/services/rental"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Rental
                     </Link>
                     <Link
                       to="/services/purchase"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Purchase
                     </Link>
                     <Link
                       to="/services/management"
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
-                      onClick={() => setIsServicesOpen(false)}
+                      className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Management
                     </Link>
                   </div>
                 )}
               </div>
-
               <Link
-                to="/contact"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                to="/properties"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
-                Contact Us
+                Properties
               </Link>
               <Link
-                to="/testimonials"
-                className="text-gray-600 hover:text-gray-900 text-sm md:text-base lg:text-lg"
+                to="/contact"
+                className="text-gray-600  font-semibold  hover:text-gray-900 text-sm md:text-base lg:text-lg"
               >
-                Testimonials
+                Contact Us
               </Link>
             </div>
 
@@ -465,7 +942,7 @@ const Navbar = () => {
             <div className="flex items-center custom-md-hidden">
               <button
                 onClick={toggleMobileMenu}
-                className="text-gray-600 hover:text-gray-900 focus:outline-none"
+                className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
               >
                 {menustate ? (
                   <X className="h-5 xs:h-6 w-5 xs:w-6" />
@@ -483,53 +960,53 @@ const Navbar = () => {
             <div className="px-2 xs:px-3 pt-2 pb-3 space-y-1">
               <Link
                 to="/"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
                 onClick={toggleMobileMenu}
               >
                 Home
               </Link>
               <Link
                 to="/about"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
                 onClick={toggleMobileMenu}
               >
                 About Us
               </Link>
-              <div>
+              <div ref={mobileServicesRef}>
                 <button
-                  onClick={toggleServicesMenu}
-                  className="w-full text-left px-3 py-2 text-gray-600 hover:text-gray-900 flex justify-between items-center"
+                  onClick={toggleMobileServicesMenu}
+                  className="w-full text-left px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900 flex justify-between items-center"
                 >
                   Services
                   <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
                 </button>
-                {isServicesOpen && (
+                {isMobileServicesOpen && !atTop && scrollDir === "up" && (
                   <div className="pl-4 xs:pl-6 space-y-1">
                     <Link
                       to="/services/sell"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Sell
                     </Link>
                     <Link
                       to="/services/rental"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Rental
                     </Link>
                     <Link
                       to="/services/purchase"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Purchase
                     </Link>
                     <Link
                       to="/services/management"
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                      onClick={toggleMobileMenu}
+                      className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
+                      onClick={handleServiceItemClick}
                     >
                       Management
                     </Link>
@@ -537,18 +1014,18 @@ const Navbar = () => {
                 )}
               </div>
               <Link
+                to="/properties"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
+                onClick={toggleMobileMenu}
+              >
+                Properties
+              </Link>
+              <Link
                 to="/contact"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
+                className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
                 onClick={toggleMobileMenu}
               >
                 Contact Us
-              </Link>
-              <Link
-                to="/testimonials"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                onClick={toggleMobileMenu}
-              >
-                Testimonials
               </Link>
             </div>
           </div>

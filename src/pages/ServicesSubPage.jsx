@@ -4,6 +4,8 @@ import { getHouses } from '../services/api';
 import HouseCard from '../components/HouseCard';
 import ScrollAnimation from '../components/ScrollAnimation';
 
+// FIXME: change this file to sub services
+
 const ServicesSubPage = () => {
   const { type } = useParams(); // e.g., sell, purchase, rental, management
   const [houses, setHouses] = useState([]);

@@ -24,6 +24,19 @@ export const getHouseById = async (id) => {
   }
 };
 
+export const searchHouses = async (filters) => {
+  try {
+    const response = await axios.post(`${API_URL}/houses/search`, filters, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    console.log(response.data, 'response.data search houses');
+    return response;
+  } catch (error) {
+    console.error('Error searching houses:', error);
+    throw error;
+  }
+};
+
 
 // import axios from "axios";
 

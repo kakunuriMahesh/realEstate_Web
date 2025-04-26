@@ -11,8 +11,10 @@ import ServicesSubPage from "./pages/ServicesSubPage";
 import Contact from "./pages/ContactForm";
 import Testimonials from "./pages/Testimonials";
 import DetailedView from "./pages/DetailedView";
+import SearchHouses from "./Components/SearchHouses";
 
 function App() {
+ 
   return (
     <Provider store={store}>
       <Router>
@@ -42,6 +44,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/houses/:id" element={<DetailedView />} />
+              <Route path="/properties" element={<SearchHouses/>}/>
             </Routes>
           </main>
           <Chatbot />
