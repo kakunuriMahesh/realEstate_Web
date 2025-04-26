@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import Navbar from "./components/Navbar";
+import Navbar from "./Components/NavbarMain";
 import Chatbot from "./components/Chatbot";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";

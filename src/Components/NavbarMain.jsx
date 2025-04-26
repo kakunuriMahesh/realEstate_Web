@@ -562,7 +562,7 @@ import logo from "../assets/Cloverrealitylogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setMenuState } from "../store/stateManage";
 
-const Navbar = () => {
+const NavbarMain = () => {
   const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const menustate = useSelector((state) => state.stateManage.menuState);
@@ -1221,7 +1221,7 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarMain;
 
 // fiex the store states properly
 
