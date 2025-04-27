@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getHouses } from '../services/api';
 // import HouseCard from '../Components/HouseCardItems';
-import ScrollAnimation from '../components/ScrollAnimation';
+import ScrollAnimation from '../Components/ScrollAnimatSmooth';
 
 // FIXME: change this file to sub services
 

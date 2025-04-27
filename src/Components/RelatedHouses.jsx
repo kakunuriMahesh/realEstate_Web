@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getHouses } from '../services/api';
 import HouseCard from './HouseCardItems';
-import ScrollAnimation from './ScrollAnimation';
+import ScrollAnimation from './ScrollAnimatSmooth';
 
 const RelatedHouses = ({ currentHouseId, propertyType, price }) => {
   const [relatedHouses, setRelatedHouses] = useState([]);

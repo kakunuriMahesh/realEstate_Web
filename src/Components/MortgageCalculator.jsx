@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useDrawingArea } from "@mui/x-charts/hooks";
 import { styled } from "@mui/material/styles";
-import ScrollAnimation from "./ScrollAnimation";
+import ScrollAnimation from "./ScrollAnimatSmooth";
 import { DollarSign, Percent, Home } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 

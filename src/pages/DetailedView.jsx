@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getHouses } from "../services/api";
-import ScrollAnimation from "../components/ScrollAnimation";
+import ScrollAnimation from "../Components/ScrollAnimatSmooth";
 import RelatedHouses from "../components/RelatedHouses";
 import ContactForm from "../pages/ContactForm";
 import {

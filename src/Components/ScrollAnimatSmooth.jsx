@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-const ScrollAnimation = ({ children }) => {
+const ScrollAnimatSmooth = ({ children }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px -50px 0px' });
 
@@ -30,4 +30,4 @@ const ScrollAnimation = ({ children }) => {
   );
 };
 
-export default ScrollAnimation;
+export default ScrollAnimatSmooth;

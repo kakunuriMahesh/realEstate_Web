@@ -15,7 +15,7 @@ import ContactForm from "./ContactForm";
 import WhyChooseUs from "./WhyChooseUs";
 import RelatedHouses from "../Components/RelatedHouses";
 import DetailedView from "./DetailedView";
-import ScrollAnimation from "../components/ScrollAnimation";
+import ScrollAnimation from "../Components/ScrollAnimatSmooth";
 import StatsCounter from "../Components/StatsCounter";
 import HouseListing from "./HouseListing";
 
