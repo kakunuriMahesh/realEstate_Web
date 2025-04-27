@@ -350,7 +350,7 @@ const DetailedView = () => {
           </div>
         </div>
       </div>
-      <MortgageCalculator />
+      <MortgageCalculator price={house.price} />
       <RelatedHouses
         currentHouseId={house._id}
         propertyType={house.propertyType}

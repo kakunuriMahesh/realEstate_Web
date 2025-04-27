@@ -23,9 +23,11 @@ function PieCenterLabel({ children }) {
   );
 }
 
-const MortgageCalculator = () => {
+const MortgageCalculator = (price) => {
+  let housePrice  = price.price
+  console.log("price",housePrice )
   const [form, setForm] = useState({
-    totalAmount: "2500",
+    totalAmount:housePrice,
     downPayment: "15",
     interestRate: "3.5",
     loanTerm: "30",
