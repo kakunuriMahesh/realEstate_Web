@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getHouses } from "../services/api";
-import HouseCard from "../components/HouseCard";
+import HouseCard from "../Components/HouseCardItems";
 import ScrollAnimation from "../components/ScrollAnimation";
 import handleScrollToTop from "../Components/handleScrollToTop";
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getHouses } from '../services/api';
-import HouseCard from './HouseCard';
+import HouseCard from './HouseCardItems';
 import ScrollAnimation from './ScrollAnimation';
 
 const RelatedHouses = ({ currentHouseId, propertyType, price }) => {

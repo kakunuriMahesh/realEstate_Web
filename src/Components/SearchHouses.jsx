@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getHouses, searchHouses } from "../services/api";
-import HouseCard from "../components/HouseCard";
+import HouseCard from "./HouseCardItems";
 import ScrollAnimation from "../components/ScrollAnimation";
 import CustomDropdown from "../components/CustomDropdown";
 import { Search, SlidersHorizontal, X } from "lucide-react";

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getHouses } from "../services/api";
-import HouseCard from "../components/HouseCard";
+import HouseCard from "../Components/HouseCardItems";
 // import bannerImg from "../assets/home_img.jpg";
 import bannerImg from "../assets/HomeImage.jpg";
 import { Link } from "react-router-dom";
