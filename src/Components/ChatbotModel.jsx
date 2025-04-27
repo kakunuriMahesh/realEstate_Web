@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MessageCircle, X } from "lucide-react";
 
-const Chatbot = () => {
+const ChatbotModel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [userData, setUserData] = useState({ intent: "", budget: "" });
@@ -73,4 +73,4 @@ const Chatbot = () => {
   );
 };
 
-export default Chatbot;
+export default ChatbotModel;
