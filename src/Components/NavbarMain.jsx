@@ -560,12 +560,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../assets/Cloverrealitylogo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { setMenuState } from "../store/stateManage";
+import { setMenuState,setServiceState } from "../store/stateManage";
 
-const NavbarMain = () => {
+const NavbarMain = () => { 
   const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const menustate = useSelector((state) => state.stateManage.menuState);
+  const serviceState = useSelector((state) => state.stateManage.serviceState);
+
   const desktopServicesRef = useRef(null);
   const mobileServicesRef = useRef(null);
 
@@ -636,12 +638,14 @@ const NavbarMain = () => {
   }, []);
 
   const toggleDesktopServicesMenu = () => {
-    setIsDesktopServicesOpen(!isDesktopServicesOpen);
+    // setIsDesktopServicesOpen(!isDesktopServicesOpen);
+    dispatch(setServiceState(!serviceState))
     setIsMobileServicesOpen(false);
   };
 
   const toggleMobileServicesMenu = () => {
-    setIsMobileServicesOpen(!isMobileServicesOpen);
+    // setIsMobileServicesOpen(!isMobileServicesOpen);
+    dispatch(setServiceState(!serviceState))
     setIsDesktopServicesOpen(false);
   };
 
@@ -677,7 +681,7 @@ const NavbarMain = () => {
               <div className="flex items-center">
                 <Link to="/">
                   <img
-                    className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
+                    className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px] p-2 md:p-0"
                     src={logo}
                     alt="Real Estate Logo"
                   />
@@ -707,7 +711,7 @@ const NavbarMain = () => {
                     Services
                     <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
                   </button>
-                  {isDesktopServicesOpen && atTop && (
+                  {serviceState && atTop && (
                     <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-gradient-to-t from-white to-100%  shadow-lg rounded-md py-2">
                       <Link
                         to="/services/sell"
@@ -763,9 +767,9 @@ const NavbarMain = () => {
                   className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
                 >
                   {menustate ? (
-                    <X className="h-5 xs:h-6 w-5 xs:w-6" />
+                    <X className="h-8 w-8 " />
                   ) : (
-                    <Menu className="h-5 xs:h-6 w-5 xs:w-6" />
+                    <Menu className="h-8 w-8" />
                   )}
                 </button>
               </div>
@@ -798,7 +802,7 @@ const NavbarMain = () => {
                     Services
                     <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
                   </button>
-                  {isMobileServicesOpen && atTop && (
+                  {serviceState && atTop && (
                     <div className="pl-4 xs:pl-6 space-y-1">
                       <Link
                         to="/services/sell"
@@ -862,7 +866,9 @@ const NavbarMain = () => {
             <div className="flex items-center">
               <Link to="/">
                 <img
-                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
+                  // className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
+                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px] p-2 md:p-0"
+
                   src={logo}
                   alt="Real Estate Logo"
                 />
@@ -892,7 +898,7 @@ const NavbarMain = () => {
                   Services
                   <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
                 </button>
-                {isDesktopServicesOpen && !atTop && scrollDir === "up" && (
+                {serviceState && !atTop && scrollDir === "up" && (
                   <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-white shadow-lg rounded-md py-2">
                     <Link
                       to="/services/sell"
@@ -946,9 +952,9 @@ const NavbarMain = () => {
                 className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
               >
                 {menustate ? (
-                  <X className="h-5 xs:h-6 w-5 xs:w-6" />
+                  <X className="h-8 w-8" />
                 ) : (
-                  <Menu className="h-5 xs:h-6 w-5 xs:w-6" />
+                  <Menu className="h-8 w-8" />
                 )}
               </button>
             </div>
@@ -981,7 +987,8 @@ const NavbarMain = () => {
                   Services
                   <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
                 </button>
-                {isMobileServicesOpen && !atTop && scrollDir === "up" && (
+                {/* {isMobileServicesOpen && !atTop && scrollDir === "up" && ( */}
+                {serviceState && !atTop && scrollDir === "up" && (
                   <div className="pl-4 xs:pl-6 space-y-1">
                     <Link
                       to="/services/sell"
@@ -1046,7 +1053,9 @@ const NavbarMain = () => {
               <div className="flex items-center">
                 <Link to="/">
                   <img
-                    className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
+                    // className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
+                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px] p-2 md:p-0"
+
                     src={logo}
                     alt="Real Estate Logo"
                   />
@@ -1076,7 +1085,8 @@ const NavbarMain = () => {
                     Services
                     <ChevronDown className="ml-1 xs:ml-2 h-4 xs:h-5 w-4 xs:w-5" />
                   </button>
-                  {isDesktopServicesOpen && !atTop && scrollDir === "up" && (
+                  {/* {serviceState &&  !atTop && scrollDir === "up" && ( */}
+                  {serviceState && (
                     <div className="absolute mt-2 w-40 xs:w-44 sm:w-48 bg-white shadow-lg rounded-md py-2">
                       <Link
                         to="/services/sell"
@@ -1130,9 +1140,9 @@ const NavbarMain = () => {
                   className="text-gray-600  font-semibold  hover:text-gray-900 focus:outline-none"
                 >
                   {menustate ? (
-                    <X className="h-5 xs:h-6 w-5 xs:w-6" />
+                    <X className="h-8 w-8" />
                   ) : (
-                    <Menu className="h-5 xs:h-6 w-5 xs:w-6" />
+                    <Menu className="h-8 w-8" />
                   )}
                 </button>
               </div>
@@ -1165,7 +1175,8 @@ const NavbarMain = () => {
                     Services
                     <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
                   </button>
-                  {isMobileServicesOpen && !atTop && scrollDir === "up" && (
+                  {/* {isMobileServicesOpen && !atTop && scrollDir === "up" && ( */}
+                  {serviceState  && (
                     <div className="pl-4 xs:pl-6 space-y-1">
                       <Link
                         to="/services/sell"

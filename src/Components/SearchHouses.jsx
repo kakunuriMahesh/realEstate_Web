@@ -199,7 +199,7 @@ const SearchHouses = () => {
               name="city"
               value={filters.city}
               onChange={handleInputChange}
-              placeholder="e.g., Nalgonda"
+              placeholder=" "
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -212,7 +212,7 @@ const SearchHouses = () => {
               name="state"
               value={filters.state}
               onChange={handleInputChange}
-              placeholder="e.g., Telangana"
+              placeholder=" "
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -225,7 +225,7 @@ const SearchHouses = () => {
               name="zip"
               value={filters.zip}
               onChange={handleInputChange}
-              placeholder="e.g., 508001"
+              placeholder=" "
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -238,7 +238,7 @@ const SearchHouses = () => {
               name="country"
               value={filters.country}
               onChange={handleInputChange}
-              placeholder="e.g., USA"
+              placeholder=" "
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -254,7 +254,7 @@ const SearchHouses = () => {
               name="minPrice"
               value={filters.minPrice}
               onChange={handleInputChange}
-              placeholder="e.g., 10000"
+              placeholder=" "
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -267,7 +267,7 @@ const SearchHouses = () => {
               name="maxPrice"
               value={filters.maxPrice}
               onChange={handleInputChange}
-              placeholder="e.g., 1000000"
+              placeholder=" 00"
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -578,7 +578,7 @@ export default SearchHouses;
 //                     name="city"
 //                     value={filters.city}
 //                     onChange={handleInputChange}
-//                     placeholder="e.g., Nalgonda"
+//                     placeholder=" "
 //                     className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //                   />
 //                 </div>
@@ -591,7 +591,7 @@ export default SearchHouses;
 //                     name="state"
 //                     value={filters.state}
 //                     onChange={handleInputChange}
-//                     placeholder="e.g., Telangana"
+//                     placeholder=" "
 //                     className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //                   />
 //                 </div>
@@ -604,7 +604,7 @@ export default SearchHouses;
 //                     name="zip"
 //                     value={filters.zip}
 //                     onChange={handleInputChange}
-//                     placeholder="e.g., 508001"
+//                     placeholder=" "
 //                     className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //                   />
 //                 </div>
@@ -617,7 +617,7 @@ export default SearchHouses;
 //                     name="country"
 //                     value={filters.country}
 //                     onChange={handleInputChange}
-//                     placeholder="e.g., USA"
+//                     placeholder=" "
 //                     className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //                   />
 //                 </div>
@@ -633,7 +633,7 @@ export default SearchHouses;
 //                     name="minPrice"
 //                     value={filters.minPrice}
 //                     onChange={handleInputChange}
-//                     placeholder="e.g., 10000"
+//                     placeholder=" "
 //                     className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //                   />
 //                 </div>
@@ -646,7 +646,7 @@ export default SearchHouses;
 //                     name="maxPrice"
 //                     value={filters.maxPrice}
 //                     onChange={handleInputChange}
-//                     placeholder="e.g., 1000000"
+//                     placeholder=" 00"
 //                     className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //                   />
 //                 </div>
@@ -939,7 +939,7 @@ export default SearchHouses;
 //                 name="city"
 //                 value={filters.city}
 //                 onChange={handleInputChange}
-//                 placeholder="e.g., Nalgonda"
+//                 placeholder=" "
 //                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //               />
 //             </div>
@@ -952,7 +952,7 @@ export default SearchHouses;
 //                 name="state"
 //                 value={filters.state}
 //                 onChange={handleInputChange}
-//                 placeholder="e.g., Telangana"
+//                 placeholder=" "
 //                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //               />
 //             </div>
@@ -965,7 +965,7 @@ export default SearchHouses;
 //                 name="zip"
 //                 value={filters.zip}
 //                 onChange={handleInputChange}
-//                 placeholder="e.g., 508001"
+//                 placeholder=" "
 //                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //               />
 //             </div>
@@ -978,7 +978,7 @@ export default SearchHouses;
 //                 name="country"
 //                 value={filters.country}
 //                 onChange={handleInputChange}
-//                 placeholder="e.g., USA"
+//                 placeholder=" "
 //                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //               />
 //             </div>
@@ -991,7 +991,7 @@ export default SearchHouses;
 //                 name="minPrice"
 //                 value={filters.minPrice}
 //                 onChange={handleInputChange}
-//                 placeholder="e.g., 10000"
+//                 placeholder=" "
 //                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //               />
 //             </div>
@@ -1004,7 +1004,7 @@ export default SearchHouses;
 //                 name="maxPrice"
 //                 value={filters.maxPrice}
 //                 onChange={handleInputChange}
-//                 placeholder="e.g., 1000000"
+//                 placeholder=" 00"
 //                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
 //               />
 //             </div>
