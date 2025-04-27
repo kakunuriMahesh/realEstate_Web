@@ -13,7 +13,7 @@ import {
 import logo from "../assets/Cloverrealitylogo.png"; // Adjust if your logo has a different name
 
 
-const Footer = () => {
+const FooterSection = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -246,7 +246,7 @@ const Footer = () => {
 };
 
 
-export default Footer;
+export default FooterSection;
 
 
 

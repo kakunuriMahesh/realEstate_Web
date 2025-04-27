@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import Navbar from "./Components/NavbarMain";
 import Chatbot from "./Components/ChatbotModel";
-import Footer from "./components/Footer";
+import Footer from "./Components/FooterSection";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
