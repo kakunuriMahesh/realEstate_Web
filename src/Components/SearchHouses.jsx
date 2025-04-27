@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getHouses, searchHouses } from "../services/api";
 import HouseCard from "./HouseCardItems";
 import ScrollAnimation from "./ScrollAnimatSmooth";
-import CustomDropdown from "../components/CustomDropdown";
+import CustomDropdown from "./CustomDrop";
 import { Search, SlidersHorizontal, X } from "lucide-react";
  
 const SearchHouses = () => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-const CustomDropdown = ({ options, value, onChange, placeholder }) => {
+const CustomDrop = ({ options, value, onChange, placeholder }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (option) => {
@@ -37,4 +37,4 @@ const CustomDropdown = ({ options, value, onChange, placeholder }) => {
   );
 };
 
-export default CustomDropdown;
+export default CustomDrop;
