@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getHouses } from "../services/api";
+import { getHouses, getHouseById } from "../services/api";
+
 import ScrollAnimation from "../Components/ScrollAnimatSmooth";
 import RelatedHouses from "../Components/RelatedHousesCheck";
 import ContactForm from "../pages/ContactForm";
@@ -72,11 +73,15 @@ const DetailedView = () => {
   useEffect(() => {
     const fetchHouse = async () => {
       try {
-        const response = await getHouses();
-        const house = response.data.find((h) => h._id === id);
+        // const response = await getHouses();
+        const response = await getHouseById(id);
+        
+        // const house = response.data.find((h) => h._id === id);
+        console.log(response,"houseresponse")
+        const house  = response.data
         if (!house) throw new Error("House not found");
         setHouse(house);
-        setLoading(false);
+        setLoading(false); 
       } catch (err) {
         console.error("Error fetching house:", err);
         setError("Failed to load house details.");
