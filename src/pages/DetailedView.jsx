@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getHouses } from "../services/api";
 import ScrollAnimation from "../Components/ScrollAnimatSmooth";
-import RelatedHouses from "../components/RelatedHouses";
+import RelatedHouses from "../Components/RelatedHousesCheck";
 import ContactForm from "../pages/ContactForm";
 import {
   MapPin,

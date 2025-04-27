@@ -3,7 +3,7 @@ import { getHouses } from '../services/api';
 import HouseCard from './HouseCardItems';
 import ScrollAnimation from './ScrollAnimatSmooth';
 
-const RelatedHouses = ({ currentHouseId, propertyType, price }) => {
+const RelatedHousesCheck = ({ currentHouseId, propertyType, price }) => {
   const [relatedHouses, setRelatedHouses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,4 +45,4 @@ const RelatedHouses = ({ currentHouseId, propertyType, price }) => {
   );
 };
 
-export default RelatedHouses;
+export default RelatedHousesCheck;

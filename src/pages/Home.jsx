@@ -13,7 +13,7 @@ import Services from "./Services";
 import Testimonials from "./Testimonials";
 import ContactForm from "./ContactForm";
 import WhyChooseUs from "./WhyChooseUs";
-import RelatedHouses from "../Components/RelatedHouses";
+import RelatedHouses from "../Components/RelatedHousesCheck";
 import DetailedView from "./DetailedView";
 import ScrollAnimation from "../Components/ScrollAnimatSmooth";
 import StatsCounter from "../Components/StatsCounter";
