@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getHouses } from '../services/api';
-import HouseCard from '../Components/HouseCardItems';
+// import HouseCard from '../Components/HouseCardItems';
 import ScrollAnimation from '../components/ScrollAnimation';
 
 // FIXME: change this file to sub services
@@ -56,7 +56,7 @@ const ServicesSubPage = () => {
 
   return (
     <div className="bg-gray-100 py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">{getTitle()}</h1>
         {loading ? (
           <p className="text-gray-600">Loading...</p>
@@ -73,7 +73,7 @@ const ServicesSubPage = () => {
             ))}
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
