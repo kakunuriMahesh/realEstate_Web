@@ -39,6 +39,7 @@ import {
 import MortgageCalculator from "../Components/MortgageCalculator";
 import AnimatedSection from "../Components/AnimatedSection";
 import handleScrollToTop from "../Components/handleScrollToTop";
+import ReviewForm from "../Components/ReviewForm";
 
 const iconMap = {
   Fireplace: Flame,
@@ -357,6 +358,9 @@ const DetailedView = () => {
         price={house.price}
       />
       <ContactForm />
+      <div className="mt-12">
+          <ReviewForm houseId={house._id} />
+        </div>
     </>
   );
 };

@@ -60,7 +60,7 @@ const HouseCard = ({ house }) => {
       >
         <div className="relative overflow-hidden">
           <img
-            src={house.coverImg.url}
+            src={house?.coverImg?.url}
             alt={house.title}
             className="w-full h-48 object-cover hover:scale-150 duration-300"
           />

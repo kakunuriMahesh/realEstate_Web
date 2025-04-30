@@ -43,7 +43,7 @@ const HouseListing = () => {
   };
 
   console.log(
-    filteredHouses[3]?.coverImg.url,
+    filteredHouses[0]?.coverImg.url,
     "filteredHouses[3].coverImg.url"
   );
 
