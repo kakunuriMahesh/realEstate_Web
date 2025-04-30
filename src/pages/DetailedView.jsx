@@ -99,7 +99,7 @@ const DetailedView = () => {
     return <p className="text-gray-600 text-center py-8">House not found.</p>;
 
   const images = (house.images || []).map((img) => img.url);
-  const allImages = [house.coverImg.url, ...images];
+  const allImages = [house?.coverImg?.url, ...images];
 
   const openModal = (url) => {
     const index = allImages.indexOf(url);
@@ -138,7 +138,7 @@ const DetailedView = () => {
             <AnimatedSection animationClass="zoom-in">
               <img
                 className="rounded-[30px] h-[550px] w-full object-cover cursor-pointer"
-                src={house.coverImg.url}
+                src={house?.coverImg?.url}
                 alt={house.title}
                 onClick={() => openModal(house.coverImg.url)}
               />
