@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { getHouses } from '../services/api';
 // import HouseCard from '../Components/HouseCardItems';
 import ScrollAnimation from '../Components/ScrollAnimatSmooth';
+import HouseCard from '../Components/HouseCardItems';
 
 // FIXME: change this file to sub services
 
-const ServicesSubPage = () => {
-  const { type } = useParams(); // e.g., sell, purchase, rental, management
+const ServicesSubPage = ({ type }) => {
+  // const { type } = useParams(); // e.g., sell, purchase, rental, management
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,14 +57,14 @@ const ServicesSubPage = () => {
 
   return (
     <div className="bg-gray-100 py-8">
-      {/* <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-6">{getTitle()}</h1>
         {loading ? (
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-600 bg-red-500 text-center">Loading...</p>
         ) : error ? (
-          <p className="text-red-600">{error}</p>
-        ) : houses.length === 0 ? (
-          <p className="text-gray-600">No properties available for this service.</p>
+          <p className="text-gray-600 bg-red-500 text-center">{error}</p>
+        ) : !houses.length ? (
+          <p className="text-gray-600 bg-red-500 text-center">No properties available for this service.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {houses.map((house) => (
@@ -73,7 +74,7 @@ const ServicesSubPage = () => {
             ))}
           </div>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
