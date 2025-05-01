@@ -1,7 +1,7 @@
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getHouses, getHouseById } from "../services/api";
-
 import ScrollAnimation from "../Components/ScrollAnimatSmooth";
 import RelatedHouses from "../Components/RelatedHousesCheck";
 import ContactForm from "../pages/ContactForm";
@@ -62,27 +62,22 @@ const iconMap = {
   "Great View": Mountain,
 };
 
-const DetailedView = () => {
+const PropertyDetails = () => {
   const { id } = useParams();
   const [house, setHouse] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalImageIndex, setModalImageIndex] = useState(null);
 
-   
-
   useEffect(() => {
     const fetchHouse = async () => {
       try {
-        // const response = await getHouses();
         const response = await getHouseById(id);
-        
-        // const house = response.data.find((h) => h._id === id);
-        console.log(response,"houseresponse")
-        const house  = response.data
+        console.log(response, "houseresponse");
+        const house = response.data;
         if (!house) throw new Error("House not found");
         setHouse(house);
-        setLoading(false); 
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching house:", err);
         setError("Failed to load house details.");
@@ -100,10 +95,16 @@ const DetailedView = () => {
 
   const images = (house.images || []).map((img) => img.url);
   const allImages = [house?.coverImg?.url, ...images];
+  const displayImages = images.slice(0, 4); // Show up to 4 images
+  const extraImagesCount = images.length > 4 ? images.length - 4 : 0;
 
   const openModal = (url) => {
     const index = allImages.indexOf(url);
     setModalImageIndex(index);
+  };
+
+  const openAllImages = () => {
+    setModalImageIndex(1); // Start with first additional image
   };
 
   const closeModal = () => {
@@ -133,7 +134,8 @@ const DetailedView = () => {
   return (
     <>
       <ScrollAnimation>
-        <div className="property-container gap-5 p-8 pl-14 pr-14 mt-[40px]">
+        <div className="property-container gap-5 p-8 pl-14 pr-14 mt-[40px] grid lg:grid-cols-2">
+          {/* Cover Image */}
           <div className="row-span-4 min-w-[40%]">
             <AnimatedSection animationClass="zoom-in">
               <img
@@ -144,22 +146,55 @@ const DetailedView = () => {
               />
             </AnimatedSection>
           </div>
-          <div className="row-span-2 house-detail-images min-w-[60%] grid md:grid-cols-2 sm:grid-cols-2 gap-4 justify-center">
-            {images.map((image, index) => (
-              <AnimatedSection animationClass="zoom-in">
-                <img
-                  key={index}
-                  className=" detail_image rounded-[30px] h-[268px] w-[500px] object-cover cursor-pointer zoom-in"
-                  src={image}
-                  alt={`${house.title} ${index + 1}`}
-                  onClick={() => openModal(image)}
-                />
-              </AnimatedSection>
-            ))}
-          </div>
+
+          {/* Additional Images */}
+          {images.length > 0 && (
+            <div
+              className={`row-span-2 house-detail-images min-w-[60%] grid ${
+                images.length >= 3 ? "md:grid-cols-2" : "md:grid-cols-1"
+              } sm:grid-cols-1 gap-4 justify-center`}
+            >
+              {displayImages.map((image, index) => (
+                <AnimatedSection key={index} animationClass="zoom-in">
+                  <div className="relative">
+                    <img
+                      className="detail_image rounded-[30px] h-[268px] w-full object-cover cursor-pointer"
+                      src={image}
+                      alt={`${house.title} ${index + 1}`}
+                      onClick={() => openModal(image)}
+                    />
+                    {/* Overlay for >4 images on 4th image */}
+                    {index === 3 && extraImagesCount > 0 && (
+                      <div
+                        className="absolute inset-0 bg-black/50 rounded-[30px] flex items-center justify-center cursor-pointer"
+                        onClick={openAllImages}
+                      >
+                        <span className="text-white text-2xl font-semibold">
+                          +{extraImagesCount}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          )}
         </div>
       </ScrollAnimation>
 
+      {/* View All Images Button for >4 images */}
+      {/* {extraImagesCount > 0 && (
+        <div className="text-center mt-4">
+          <button
+            className="bg-teal-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600"
+            onClick={openAllImages}
+          >
+            View All Images ({images.length})
+          </button>
+        </div>
+      )} */}
+
+      {/* Image Modal */}
       {modalImageIndex !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
           <button
@@ -191,7 +226,6 @@ const DetailedView = () => {
       <div>
         <div className="flex flex-col md:flex-row gap-6 p-6 property-container">
           {/* Left Section */}
-
           <div className="w-full md:w-2/3 space-y-6">
             <AnimatedSection animationClass="slide-in-right">
               <h1 className="text-3xl font-bold">{house.title}</h1>
@@ -231,7 +265,7 @@ const DetailedView = () => {
                   style={{ color: "black" }}
                   className="text-xl font-semibold mt-4 mb-2"
                 >
-                  Desctiption
+                  Description
                 </h2>
                 <p style={{ color: "gray" }} className="">
                   {house.description}
@@ -307,46 +341,46 @@ const DetailedView = () => {
           </div>
 
           {/* Right Section */}
-          <div className="md:w-1/3 ">
-          <AnimatedSection animationClass="zoom-in  right-section">
-            <section className="p-6 space-y-4 shadow-lg bg-white rounded-2xl">
-              <div className="text-center">
-                <h2
-                  style={{ color: "black" }}
-                  className="text-lg font-semibold text-gray-700"
-                >
-                  Property for {house.status}
-                </h2>
-                <div className="text-3xl font-bold mt-2">
-                  ${house.price.toLocaleString()} {house.priceUnit}/
-                  {house.priceFrequency}
+          <div className="md:w-1/3">
+            <AnimatedSection animationClass="zoom-in right-section">
+              <section className="p-6 space-y-4 shadow-lg bg-white rounded-2xl">
+                <div className="text-center">
+                  <h2
+                    style={{ color: "black" }}
+                    className="text-lg font-semibold text-gray-700"
+                  >
+                    Property for {house.status}
+                  </h2>
+                  <div className="text-3xl font-bold mt-2">
+                    ${house.price.toLocaleString()} {house.priceUnit}/
+                    {house.priceFrequency}
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Get in touch for more about this property
+                  </p>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
-                  Get in touch for more about this property
-                </p>
-              </div>
-              <button className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none">
-                Request Info
-              </button>
-              <hr />
-              <div className="flex items-center gap-4">
-                <img
-                  src={agent.image}
-                  alt={agent.name}
-                  className="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <div className="font-semibold">{agent.name}</div>
-                  <div className="text-xs text-gray-500">{agent.role}</div>
+                <button className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none">
+                  Request Info
+                </button>
+                <hr />
+                <div className="flex items-center gap-4">
+                  <img
+                    src={agent.image}
+                    alt={agent.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div>
+                    <div className="font-semibold">{agent.name}</div>
+                    <div className="text-xs text-gray-500">{agent.role}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Mail size={16} /> {agent.email}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Phone size={16} /> {agent.phone}
-              </div>
-            </section>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Mail size={16} /> {agent.email}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Phone size={16} /> {agent.phone}
+                </div>
+              </section>
             </AnimatedSection>
           </div>
         </div>
@@ -359,13 +393,386 @@ const DetailedView = () => {
       />
       <ContactForm />
       <div className="mt-12">
-          <ReviewForm houseId={house._id} />
-        </div>
+        <ReviewForm houseId={house._id} />
+      </div>
     </>
   );
 };
 
-export default DetailedView;
+export default PropertyDetails;
+
+
+// TODO: where images morethen 4 images
+
+
+// import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import { getHouses, getHouseById } from "../services/api";
+
+// import ScrollAnimation from "../Components/ScrollAnimatSmooth";
+// import RelatedHouses from "../Components/RelatedHousesCheck";
+// import ContactForm from "../pages/ContactForm";
+// import {
+//   MapPin,
+//   Mail,
+//   Phone,
+//   Flame,
+//   Warehouse,
+//   TreeDeciduous,
+//   Utensils,
+//   Fan,
+//   Shirt,
+//   Waves,
+//   Dumbbell,
+//   Car,
+//   ArrowUpDown,
+//   Shield,
+//   Users,
+//   Star,
+//   Gem,
+//   Key,
+//   Paintbrush,
+//   Leaf,
+//   Mountain,
+//   Tag,
+//   ChevronLeft,
+//   ChevronRight,
+//   X,
+//   Contact,
+//   Bed,
+//   Bath,
+//   Ratio,
+// } from "lucide-react";
+// import MortgageCalculator from "../Components/MortgageCalculator";
+// import AnimatedSection from "../Components/AnimatedSection";
+// import handleScrollToTop from "../Components/handleScrollToTop";
+// import ReviewForm from "../Components/ReviewForm";
+
+// const iconMap = {
+//   Fireplace: Flame,
+//   Garage: Warehouse,
+//   "Hardwood Floors": TreeDeciduous,
+//   "Updated Kitchen": Utensils,
+//   "Central AC": Fan,
+//   "Walk-in Closet": Shirt,
+//   Pool: Waves,
+//   Gym: Dumbbell,
+//   Parking: Car,
+//   Elevator: ArrowUpDown,
+//   Security: Shield,
+//   Clubhouse: Users,
+//   New: Star,
+//   Luxury: Gem,
+//   "Move-in Ready": Key,
+//   Renovated: Paintbrush,
+//   "Eco-Friendly": Leaf,
+//   "Great View": Mountain,
+// };
+
+// const DetailedView = () => {
+//   const { id } = useParams();
+//   const [house, setHouse] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [modalImageIndex, setModalImageIndex] = useState(null);
+
+   
+
+//   useEffect(() => {
+//     const fetchHouse = async () => {
+//       try {
+//         // const response = await getHouses();
+//         const response = await getHouseById(id);
+        
+//         // const house = response.data.find((h) => h._id === id);
+//         console.log(response,"houseresponse")
+//         const house  = response.data
+//         if (!house) throw new Error("House not found");
+//         setHouse(house);
+//         setLoading(false); 
+//       } catch (err) {
+//         console.error("Error fetching house:", err);
+//         setError("Failed to load house details.");
+//         setLoading(false);
+//       }
+//     };
+//     fetchHouse();
+//   }, [id]);
+
+//   if (loading)
+//     return <p className="text-gray-600 text-center py-8">Loading...</p>;
+//   if (error) return <p className="text-red-600 text-center py-8">{error}</p>;
+//   if (!house)
+//     return <p className="text-gray-600 text-center py-8">House not found.</p>;
+
+//   const images = (house.images || []).map((img) => img.url);
+//   const allImages = [house?.coverImg?.url, ...images];
+
+//   const openModal = (url) => {
+//     const index = allImages.indexOf(url);
+//     setModalImageIndex(index);
+//   };
+
+//   const closeModal = () => {
+//     setModalImageIndex(null);
+//   };
+
+//   const handlePrevImage = () => {
+//     setModalImageIndex((prev) =>
+//       prev === 0 ? allImages.length - 1 : prev - 1
+//     );
+//   };
+
+//   const handleNextImage = () => {
+//     setModalImageIndex((prev) =>
+//       prev === allImages.length - 1 ? 0 : prev + 1
+//     );
+//   };
+
+//   const agent = {
+//     name: "James Callahan",
+//     role: "Luxury Property Specialist",
+//     email: "james@premierhomes.com",
+//     phone: "(972) 555-9302",
+//     image: "https://via.placeholder.com/48",
+//   };
+
+//   return (
+//     <>
+//       <ScrollAnimation>
+//         <div className="property-container gap-5 p-8 pl-14 pr-14 mt-[40px]">
+//           <div className="row-span-4 min-w-[40%]">
+//             <AnimatedSection animationClass="zoom-in">
+//               <img
+//                 className="rounded-[30px] h-[550px] w-full object-cover cursor-pointer"
+//                 src={house?.coverImg?.url}
+//                 alt={house.title}
+//                 onClick={() => openModal(house.coverImg.url)}
+//               />
+//             </AnimatedSection>
+//           </div>
+//           <div className="row-span-2 house-detail-images min-w-[60%] grid md:grid-cols-2 sm:grid-cols-2 gap-4 justify-center">
+//             {images.map((image, index) => (
+//               <AnimatedSection animationClass="zoom-in">
+//                 <img
+//                   key={index}
+//                   className=" detail_image rounded-[30px] h-[268px] w-[500px] object-cover cursor-pointer zoom-in"
+//                   src={image}
+//                   alt={`${house.title} ${index + 1}`}
+//                   onClick={() => openModal(image)}
+//                 />
+//               </AnimatedSection>
+//             ))}
+//           </div>
+//         </div>
+//       </ScrollAnimation>
+
+//       {modalImageIndex !== null && (
+//         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+//           <button
+//             onClick={closeModal}
+//             className="absolute top-4 right-4 text-white p-2 rounded-full bg-gray-800 bg-opacity-50 hover:bg-opacity-75"
+//           >
+//             <X size={24} />
+//           </button>
+//           <button
+//             onClick={handlePrevImage}
+//             className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 bg-opacity-50 hover:bg-opacity-75"
+//           >
+//             <ChevronLeft size={24} />
+//           </button>
+//           <img
+//             className="max-w-[90%] max-h-[90vh] object-contain"
+//             src={allImages[modalImageIndex]}
+//             alt={`${house.title} ${modalImageIndex + 1}`}
+//           />
+//           <button
+//             onClick={handleNextImage}
+//             className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 bg-opacity-50 hover:bg-opacity-75"
+//           >
+//             <ChevronRight size={24} />
+//           </button>
+//         </div>
+//       )}
+
+//       <div>
+//         <div className="flex flex-col md:flex-row gap-6 p-6 property-container">
+//           {/* Left Section */}
+
+//           <div className="w-full md:w-2/3 space-y-6">
+//             <AnimatedSection animationClass="slide-in-right">
+//               <h1 className="text-3xl font-bold">{house.title}</h1>
+//               <div className="flex items-center gap-2 text-gray-600">
+//                 <MapPin size={16} />
+//                 {house.address.street}, {house.address.city},{" "}
+//                 {house.address.state} {house.address.zip}
+//               </div>
+//               <div className="flex gap-4 text-sm text-gray-700 mt-2">
+//                 <div className="flex items-center gap-1">
+//                   <Bed size={16} /> {house.bedrooms} Beds
+//                 </div>
+//                 <div className="flex items-center gap-1">
+//                   <Bath size={16} /> {house.bathrooms} Baths
+//                 </div>
+//                 <div className="flex items-center gap-1">
+//                   <Ratio size={16} /> {house.squareFootage} sq.ft
+//                 </div>
+//               </div>
+//             </AnimatedSection>
+//             <AnimatedSection animationClass="slide-in-right">
+//               <div>
+//                 <h2
+//                   style={{ color: "black" }}
+//                   className="text-xl font-semibold mt-4 mb-2"
+//                 >
+//                   Overview
+//                 </h2>
+//                 <p style={{ color: "gray" }} className="">
+//                   {house.overview}
+//                 </p>
+//               </div>
+//             </AnimatedSection>
+//             <AnimatedSection animationClass="slide-in-right">
+//               <div>
+//                 <h2
+//                   style={{ color: "black" }}
+//                   className="text-xl font-semibold mt-4 mb-2"
+//                 >
+//                   Desctiption
+//                 </h2>
+//                 <p style={{ color: "gray" }} className="">
+//                   {house.description}
+//                 </p>
+//               </div>
+//             </AnimatedSection>
+//             <AnimatedSection animationClass="slide-in-right">
+//               <div>
+//                 <h2
+//                   style={{ color: "black" }}
+//                   className="text-xl font-semibold mt-4 mb-2"
+//                 >
+//                   Features
+//                 </h2>
+//                 <ul className="text-gray-700 list-disc list-inside space-y-1">
+//                   {house.features.map((feature, index) => {
+//                     const Icon = iconMap[feature] || Tag;
+//                     return (
+//                       <li key={index} className="flex items-center gap-2">
+//                         <Icon size={16} /> {feature}
+//                       </li>
+//                     );
+//                   })}
+//                 </ul>
+//               </div>
+//             </AnimatedSection>
+//             <AnimatedSection animationClass="slide-in-right">
+//               <div>
+//                 <h2
+//                   style={{ color: "black" }}
+//                   className="text-xl font-semibold mt-4 mb-2"
+//                 >
+//                   Amenities
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2 text-sm text-gray-700">
+//                   {house.amenities.map((amenity, index) => {
+//                     const Icon = iconMap[amenity] || Tag;
+//                     return (
+//                       <span
+//                         key={index}
+//                         className="flex items-center gap-1 border rounded-full px-3 py-1"
+//                       >
+//                         <Icon size={16} /> {amenity}
+//                       </span>
+//                     );
+//                   })}
+//                 </div>
+//               </div>
+//             </AnimatedSection>
+//             <AnimatedSection animationClass="slide-in-right">
+//               <div>
+//                 <h2
+//                   style={{ color: "black" }}
+//                   className="text-xl font-semibold mt-4 mb-2"
+//                 >
+//                   Labels
+//                 </h2>
+//                 <div className="flex flex-wrap gap-2 text-sm text-gray-700">
+//                   {house.labels.map((label, index) => {
+//                     const Icon = iconMap[label] || Tag;
+//                     return (
+//                       <span
+//                         key={index}
+//                         className="flex items-center gap-1 border rounded-full px-3 py-1"
+//                       >
+//                         <Icon size={16} /> {label}
+//                       </span>
+//                     );
+//                   })}
+//                 </div>
+//               </div>
+//             </AnimatedSection>
+//           </div>
+
+//           {/* Right Section */}
+//           <div className="md:w-1/3 ">
+//           <AnimatedSection animationClass="zoom-in  right-section">
+//             <section className="p-6 space-y-4 shadow-lg bg-white rounded-2xl">
+//               <div className="text-center">
+//                 <h2
+//                   style={{ color: "black" }}
+//                   className="text-lg font-semibold text-gray-700"
+//                 >
+//                   Property for {house.status}
+//                 </h2>
+//                 <div className="text-3xl font-bold mt-2">
+//                   ${house.price.toLocaleString()} {house.priceUnit}/
+//                   {house.priceFrequency}
+//                 </div>
+//                 <p className="text-sm text-gray-500 mt-1">
+//                   Get in touch for more about this property
+//                 </p>
+//               </div>
+//               <button className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none">
+//                 Request Info
+//               </button>
+//               <hr />
+//               <div className="flex items-center gap-4">
+//                 <img
+//                   src={agent.image}
+//                   alt={agent.name}
+//                   className="w-12 h-12 rounded-full"
+//                 />
+//                 <div>
+//                   <div className="font-semibold">{agent.name}</div>
+//                   <div className="text-xs text-gray-500">{agent.role}</div>
+//                 </div>
+//               </div>
+//               <div className="flex items-center gap-2 text-sm text-gray-600">
+//                 <Mail size={16} /> {agent.email}
+//               </div>
+//               <div className="flex items-center gap-2 text-sm text-gray-600">
+//                 <Phone size={16} /> {agent.phone}
+//               </div>
+//             </section>
+//             </AnimatedSection>
+//           </div>
+//         </div>
+//       </div>
+//       <MortgageCalculator price={house.price} />
+//       <RelatedHouses
+//         currentHouseId={house._id}
+//         propertyType={house.propertyType}
+//         price={house.price}
+//       />
+//       <ContactForm />
+//       <div className="mt-12">
+//           <ReviewForm houseId={house._id} />
+//         </div>
+//     </>
+//   );
+// };
+
+// export default DetailedView;
 
 // TODO: fix coverimage openmodel
 
