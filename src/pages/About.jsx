@@ -6,13 +6,16 @@ import StatsCounter from "../Components/StatsCounter";
 import AnimatedSection from "../Components/AnimatedSection";
 import SearchHouses from "../Components/SearchHouses";
 import handleScrollToTop from "../Components/handleScrollToTop";
+import { useDispatch } from "react-redux";
+import { setServiceState } from "../store/stateManage";
 
 const About = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-   
+  const dispatch = useDispatch()
+
   return (
-    <div>
+    <div onClick={() => dispatch(setServiceState(false))}>
       {path === "about" && (
         <div
           style={{
@@ -47,9 +50,7 @@ const About = () => {
               <div className="w-full flex gap-4">
                 <div className="mt-6">
                   <AnimatedSection animationClass="slide-in-left">
-                    <h2 className="text-2xl font-semibold">
-                      Our Expertise
-                    </h2>
+                    <h2 className="text-2xl font-semibold">Our Expertise</h2>
                   </AnimatedSection>
                   <AnimatedSection animationClass="slide-in-left">
                     <p className="mt-4  text-justify">
@@ -82,9 +83,7 @@ const About = () => {
           </div>
           <AnimatedSection animationClass="slide-up">
             <div className="">
-              <h2 className="text-2xl font-semibold ">
-                Our Commitment
-              </h2>
+              <h2 className="text-2xl font-semibold ">Our Commitment</h2>
               <p className="text-justify mt-4">
                 Before launching Heights Realty, Lana worked in leasing for a
                 local management company. There, she helped countless
@@ -108,9 +107,7 @@ const About = () => {
             </AnimatedSection>
             <AnimatedSection animationClass="slide-up">
               <div className="mt-6">
-                <h2 className="text-2xl font-semibold">
-                  Our Vision
-                </h2>
+                <h2 className="text-2xl font-semibold">Our Vision</h2>
                 <p className="mt-4 text-justify">
                   Heights Realty was founded by Lana Radl, a Northeastern Ohio
                   (NEO) native with a deep-rooted passion for architecture and

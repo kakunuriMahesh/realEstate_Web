@@ -233,18 +233,18 @@
 //                       Sell
 //                     </Link>
 //                     <Link
-//                       to="/services/rental"
+//                       to="/services/rent"
 //                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
 //                       onClick={() => setIsServicesOpen(false)}
 //                     >
 //                       Rental
 //                     </Link>
 //                     <Link
-//                       to="/services/purchase"
+//                       to="/services/go-green"
 //                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
 //                       onClick={() => setIsServicesOpen(false)}
 //                     >
-//                       Purchase
+//                       Go Green
 //                     </Link>
 //                     <Link
 //                       to="/services/management"
@@ -323,18 +323,18 @@
 //                       Sell
 //                     </Link>
 //                     <Link
-//                       to="/services/rental"
+//                       to="/services/rent"
 //                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
 //                       onClick={toggleMobileMenu}
 //                     >
 //                       Rental
 //                     </Link>
 //                     <Link
-//                       to="/services/purchase"
+//                       to="/services/go-green"
 //                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
 //                       onClick={toggleMobileMenu}
 //                     >
-//                       Purchase
+//                       Go Green
 //                     </Link>
 //                     <Link
 //                       to="/services/management"
@@ -416,18 +416,18 @@
 //                       Sell
 //                     </Link>
 //                     <Link
-//                       to="/services/rental"
+//                       to="/services/rent"
 //                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
 //                       onClick={() => setIsServicesOpen(false)}
 //                     >
 //                       Rental
 //                     </Link>
 //                     <Link
-//                       to="/services/purchase"
+//                       to="/services/go-green"
 //                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
 //                       onClick={() => setIsServicesOpen(false)}
 //                     >
-//                       Purchase
+//                       Go Green
 //                     </Link>
 //                     <Link
 //                       to="/services/management"
@@ -506,18 +506,18 @@
 //                       Sell
 //                     </Link>
 //                     <Link
-//                       to="/services/rental"
+//                       to="/services/rent"
 //                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
 //                       onClick={toggleMobileMenu}
 //                     >
 //                       Rental
 //                     </Link>
 //                     <Link
-//                       to="/services/purchase"
+//                       to="/services/go-green"
 //                       className="block px-3 py-2 text-gray-600  font-semibold  hover:text-gray-900"
 //                       onClick={toggleMobileMenu}
 //                     >
-//                       Purchase
+//                       Go Green
 //                     </Link>
 //                     <Link
 //                       to="/services/management"
@@ -558,7 +558,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logo from "../assets/Cloverrealitylogo.png";
+// import logo from "../assets/Cloverrealitylogo.png";
+import logo from "../assets/mainLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setMenuState,setServiceState } from "../store/stateManage";
 
@@ -658,12 +659,18 @@ const NavbarMain = () => {
   };
 
   const handleServiceItemClick = () => {
-    setIsDesktopServicesOpen(false);
-    setIsMobileServicesOpen(false);
+    // setIsDesktopServicesOpen(false);
+    dispatch(setServiceState(false))
+    // setIsMobileServicesOpen(false);
     if (menustate) {
       dispatch(setMenuState(!menustate));
     }
   };
+
+
+  const includedPaths = [ "/properties", "/services"];
+const isIncluded = includedPaths.some(path => location.pathname.startsWith(path));
+
 
  
 
@@ -681,7 +688,7 @@ const NavbarMain = () => {
               <div className="flex items-center">
                 <Link to="/">
                   <img
-                    className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px] p-2 md:p-0"
+                    className="h-[50px] xs:h-[50px] sm:h-[50px] p-2 md:p-0 "
                     src={logo}
                     alt="Real Estate Logo"
                   />
@@ -721,18 +728,18 @@ const NavbarMain = () => {
                         Sell
                       </Link>
                       <Link
-                        to="/services/rental"
+                        to="/services/rent"
                         className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
                         Rental
                       </Link>
                       <Link
-                        to="/services/purchase"
+                        to="/services/go-green"
                         className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
-                        Purchase
+                        Go Green
                       </Link>
                       <Link
                         to="/services/management"
@@ -812,18 +819,18 @@ const NavbarMain = () => {
                         Sell
                       </Link>
                       <Link
-                        to="/services/rental"
+                        to="/services/rent"
                         className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
                         Rental
                       </Link>
                       <Link
-                        to="/services/purchase"
+                        to="/services/go-green"
                         className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
-                        Purchase
+                        Go Green
                       </Link>
                       <Link
                         to="/services/management"
@@ -867,7 +874,7 @@ const NavbarMain = () => {
               <Link to="/">
                 <img
                   // className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
-                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px] p-2 md:p-0"
+                  className="h-[50px] xs:h-[50px] sm:h-[50px] p-2 md:p-0 "
 
                   src={logo}
                   alt="Real Estate Logo"
@@ -908,18 +915,18 @@ const NavbarMain = () => {
                       Sell
                     </Link>
                     <Link
-                      to="/services/rental"
+                      to="/services/rent"
                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                       onClick={handleServiceItemClick}
                     >
                       Rental
                     </Link>
                     <Link
-                      to="/services/purchase"
+                      to="/services/go-green"
                       className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                       onClick={handleServiceItemClick}
                     >
-                      Purchase
+                      Go Green
                     </Link>
                     <Link
                       to="/services/management"
@@ -998,18 +1005,18 @@ const NavbarMain = () => {
                       Sell
                     </Link>
                     <Link
-                      to="/services/rental"
+                      to="/services/rent"
                       className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                       onClick={handleServiceItemClick}
                     >
                       Rental
                     </Link>
                     <Link
-                      to="/services/purchase"
+                      to="/services/go-green"
                       className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                       onClick={handleServiceItemClick}
                     >
-                      Purchase
+                      Go Green
                     </Link>
                     <Link
                       to="/services/management"
@@ -1040,7 +1047,7 @@ const NavbarMain = () => {
         )}
       </nav>
 
-      {path === "properties" && (
+      {isIncluded && (
         <nav
           className={`w-full shadow-2xl fixed top-0 left-0 z-50 transition-all duration-500
              ${
@@ -1054,7 +1061,7 @@ const NavbarMain = () => {
                 <Link to="/">
                   <img
                     // className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
-                  className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px] p-2 md:p-0"
+                  className="h-[50px] xs:h-[50px] sm:h-[50px] p-2 md:p-0 "
 
                     src={logo}
                     alt="Real Estate Logo"
@@ -1096,18 +1103,18 @@ const NavbarMain = () => {
                         Sell
                       </Link>
                       <Link
-                        to="/services/rental"
+                        to="/services/rent"
                         className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
                         Rental
                       </Link>
                       <Link
-                        to="/services/purchase"
+                        to="/services/go-green"
                         className="block px-4 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
-                        Purchase
+                        Go Green
                       </Link>
                       <Link
                         to="/services/management"
@@ -1186,18 +1193,18 @@ const NavbarMain = () => {
                         Sell
                       </Link>
                       <Link
-                        to="/services/rental"
+                        to="/services/rent"
                         className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
                         Rental
                       </Link>
                       <Link
-                        to="/services/purchase"
+                        to="/services/go-green"
                         className="block px-3 py-2 text-gray-600  font-semibold  hover:bg-gray-100"
                         onClick={handleServiceItemClick}
                       >
-                        Purchase
+                        Go Green
                       </Link>
                       <Link
                         to="/services/management"

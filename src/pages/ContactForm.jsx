@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 import { Send } from "lucide-react";
 import contactImg from "../assets/contactform.jpg";
 import handleScrollToTop from "../Components/handleScrollToTop";
+import { setServiceState } from "../store/stateManage";
+import { useDispatch } from "react-redux";
 
 const Contact = () => {
-   
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,6 +14,7 @@ const Contact = () => {
     budget: "",
     message: "",
   });
+  const dispatch =  useDispatch()
   const location = useLocation();
   const path = location.pathname.split("/")[1];
 
@@ -39,7 +41,7 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <div onClick={() => dispatch(setServiceState(false))}>
       {path === "contact" && (
         <div
           style={{
@@ -54,7 +56,9 @@ const Contact = () => {
         >
           <div className="py-16 pt-[140px] bg-gradient-to-t from-black to-transparent">
             <div className="max-w-6xl p-4 text-white slide-in-text">
-              <h1 className="text-4xl font-semibold md:text-7xl ">Contact Us</h1>
+              <h1 className="text-4xl font-semibold md:text-7xl ">
+                Contact Us
+              </h1>
               <p className="mt-4 text-lg">
                 Explore our listings for buying, renting, or selling properties.
               </p>

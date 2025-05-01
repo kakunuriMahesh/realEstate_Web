@@ -57,7 +57,7 @@ const Home = () => {
 
   const setViewOptions = () => {
     dispatch(setMenuState(false));
-    dispatch(setServiceState(false))
+    dispatch(setServiceState(false));
   };
 
   return (
@@ -87,7 +87,10 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="bg-green-950">
+      <div
+        onClick={() => dispatch(setServiceState(false))}
+        className="bg-green-950"
+      >
         <ServicesScroll />
         <About />
         {/* <Services /> */}

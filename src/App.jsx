@@ -24,8 +24,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route
+              {/* <Route path="/services" element={<Services />} /> */}
+              <Route path="/services/:tab?" element={<Services />} />
+              {/* <Route
                 path="/services/sell"
                 element={<ServicesSubPage type="sell" />}
               />
@@ -40,7 +41,7 @@ function App() {
               <Route
                 path="/services/management"
                 element={<ServicesSubPage type="management" />}
-              />
+              /> */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/houses/:id" element={<DetailedView />} />
