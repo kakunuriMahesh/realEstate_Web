@@ -5,6 +5,8 @@ import HouseCard from "./HouseCardItems";
 import ScrollAnimation from "./ScrollAnimatSmooth";
 import CustomDropdown from "./CustomDrop";
 import { Search, SlidersHorizontal, X } from "lucide-react";
+import { setServiceState } from "../store/stateManage";
+import { useDispatch } from "react-redux";
  
 const SearchHouses = () => {
   const [filters, setFilters] = useState({
@@ -25,6 +27,7 @@ const SearchHouses = () => {
     isFeatured: null,
     isActive: null,
   });
+  const dispatch = useDispatch()
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -371,7 +374,7 @@ const SearchHouses = () => {
   );
 
   return (
-    <div className="bg-green-950 py-8 pt-[100px]">
+    <div    onClick={() => dispatch(setServiceState(false))} className="bg-green-950 py-8 pt-[100px]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white">

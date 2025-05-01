@@ -561,9 +561,9 @@ import { Menu, X, ChevronDown } from "lucide-react";
 // import logo from "../assets/Cloverrealitylogo.png";
 import logo from "../assets/mainLogo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { setMenuState,setServiceState } from "../store/stateManage";
+import { setMenuState, setServiceState } from "../store/stateManage";
 
-const NavbarMain = () => { 
+const NavbarMain = () => {
   const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const menustate = useSelector((state) => state.stateManage.menuState);
@@ -640,13 +640,13 @@ const NavbarMain = () => {
 
   const toggleDesktopServicesMenu = () => {
     // setIsDesktopServicesOpen(!isDesktopServicesOpen);
-    dispatch(setServiceState(!serviceState))
+    dispatch(setServiceState(!serviceState));
     setIsMobileServicesOpen(false);
   };
 
   const toggleMobileServicesMenu = () => {
     // setIsMobileServicesOpen(!isMobileServicesOpen);
-    dispatch(setServiceState(!serviceState))
+    dispatch(setServiceState(!serviceState));
     setIsDesktopServicesOpen(false);
   };
 
@@ -660,19 +660,17 @@ const NavbarMain = () => {
 
   const handleServiceItemClick = () => {
     // setIsDesktopServicesOpen(false);
-    dispatch(setServiceState(false))
+    dispatch(setServiceState(false));
     // setIsMobileServicesOpen(false);
     if (menustate) {
       dispatch(setMenuState(!menustate));
     }
   };
 
-
-  const includedPaths = [ "/properties", "/services"];
-const isIncluded = includedPaths.some(path => location.pathname.startsWith(path));
-
-
- 
+  const includedPaths = ["/properties", "/services"];
+  const isIncluded = includedPaths.some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   return (
     <>
@@ -875,7 +873,6 @@ const isIncluded = includedPaths.some(path => location.pathname.startsWith(path)
                 <img
                   // className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
                   className="h-[50px] xs:h-[50px] sm:h-[50px] p-2 md:p-0 "
-
                   src={logo}
                   alt="Real Estate Logo"
                 />
@@ -1050,9 +1047,7 @@ const isIncluded = includedPaths.some(path => location.pathname.startsWith(path)
       {isIncluded && (
         <nav
           className={`w-full shadow-2xl fixed top-0 left-0 z-50 transition-all duration-500
-             ${
-            !atTop ? "opacity-0 pointer-events-none" : "opacity-100"
-          }
+             ${!atTop ? "opacity-0 pointer-events-none" : "opacity-100"}
            bg-white shadow-lg`}
         >
           <div className="max-w-screen-xl mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8">
@@ -1061,8 +1056,7 @@ const isIncluded = includedPaths.some(path => location.pathname.startsWith(path)
                 <Link to="/">
                   <img
                     // className="h-[50px] xs:h-[50px] sm:h-[50px] w-[50px] xs:w-[50px] sm:w-[50px]"
-                  className="h-[50px] xs:h-[50px] sm:h-[50px] p-2 md:p-0 "
-
+                    className="h-[50px] xs:h-[50px] sm:h-[50px] p-2 md:p-0 "
                     src={logo}
                     alt="Real Estate Logo"
                   />
@@ -1183,7 +1177,7 @@ const isIncluded = includedPaths.some(path => location.pathname.startsWith(path)
                     <ChevronDown className="h-4 xs:h-5 w-4 xs:w-5" />
                   </button>
                   {/* {isMobileServicesOpen && !atTop && scrollDir === "up" && ( */}
-                  {serviceState  && (
+                  {serviceState && (
                     <div className="pl-4 xs:pl-6 space-y-1">
                       <Link
                         to="/services/sell"
@@ -1242,4 +1236,3 @@ const isIncluded = includedPaths.some(path => location.pathname.startsWith(path)
 export default NavbarMain;
 
 // fiex the store states properly
-
