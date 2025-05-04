@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = 'https://realtor-backend-2f8y.onrender.com';
+const API_URL = "https://realtor-backend-2f8y.onrender.com";
 
 export const getHouses = async () => {
   try {
     const response = await axios.get(`${API_URL}/houses`);
-    console.log(response.data, 'response.data houses');
+    console.log(response.data, "response.data houses");
     return response;
   } catch (error) {
-    console.error('Error fetching houses:', error);
+    console.error("Error fetching houses:", error);
     throw error;
   }
 };
@@ -16,7 +16,7 @@ export const getHouses = async () => {
 export const getHouseById = async (id) => {
   try {
     const response = await axios.get(`${API_URL}/houses/${id}`);
-    console.log(response.data, 'response.data house by id');
+    console.log(response.data, "response.data house by id");
     return response;
   } catch (error) {
     console.error(`Error fetching house ${id}:`, error);
@@ -27,29 +27,127 @@ export const getHouseById = async (id) => {
 export const searchHouses = async (filters) => {
   try {
     const response = await axios.post(`${API_URL}/houses/search`, filters, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
-    console.log(response.data, 'response.data search houses');
+    console.log(response.data, "response.data search houses");
     return response;
   } catch (error) {
-    console.error('Error searching houses:', error);
+    console.error("Error searching houses:", error);
     throw error;
   }
 };
 
+export const createService = async (serviceData) => {
+  try {
+    const response = await axios.post(`${API_URL}/services`, serviceData, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log(response.data, "response.data create service");
+    return response;
+  } catch (error) {
+    console.error("Error creating service:", error);
+    throw error;
+  }
+};
 
-// import axios from "axios";
+// REVIEW
+export const createReview = async (reviewData) => {
+  try {
+    const response = await axios.post(`${API_URL}/reviews`, reviewData, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log(response.data, "response.data create review");
+    return response;
+  } catch (error) {
+    console.error("Error creating review:", error);
+    throw error;
+  }
+};
 
-// // const API_URL = import.meta.env.VITE_API_URL;
+export const getReviews = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/reviews`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response
+  } catch (error) {
+    console.error("Error creating review:", error);
+    throw error;
+  }
+};
+
+// CONTACT
+export const createContact = async (contactData) => {
+  try {
+    const response = await axios.post(`${API_URL}/contact`, contactData, {
+      headers: { "Content-Type": "application/json" },
+    });
+    console.log(response.data, "response.data create contact");
+    return response;
+  } catch (error) {
+    console.error("Error creating contact:", error);
+    throw error;
+  }
+};
+
+// FIXME: testmonials, newsLetters, Stats 
+
+// TODO: testmonials:
+export const getTestimonials = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/testimonials`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response
+  } catch (error) {
+    console.error("Error creating review:", error);
+    throw error;
+  }
+};
+
+export const getStats = async () => {
+  const response = await axios.get(`${API_URL}/stats`);
+  return response.data;
+};
+
+
+// TODO: updating services api
+
+// import axios from 'axios';
+
+// const API_URL = 'https://realtor-backend-2f8y.onrender.com';
 
 // export const getHouses = async () => {
 //   try {
-//     // const response = await axios.get(`${API_URL}/houses`);
-//     const response = await axios.get(`https://realtor-backend-2f8y.onrender.com/houses`);
-//     console.log(response.data, "response.data houses");
+//     const response = await axios.get(`${API_URL}/houses`);
+//     console.log(response.data, 'response.data houses');
 //     return response;
 //   } catch (error) {
-//     console.error("Error fetching houses:", error);
+//     console.error('Error fetching houses:', error);
 //     throw error;
-//   } 
+//   }
+// };
+
+// export const getHouseById = async (id) => {
+//   try {
+//     const response = await axios.get(`${API_URL}/houses/${id}`);
+//     console.log(response.data, 'response.data house by id');
+//     return response;
+//   } catch (error) {
+//     console.error(`Error fetching house ${id}:`, error);
+//     throw error;
+//   }
+// };
+
+// export const searchHouses = async (filters) => {
+//   try {
+//     const response = await axios.post(`${API_URL}/houses/search`, filters, {
+//       headers: { 'Content-Type': 'application/json' },
+//     });
+//     console.log(response.data, 'response.data search houses');
+//     return response;
+//   } catch (error) {
+//     console.error('Error searching houses:', error);
+//     throw error;
+//   }
 // };

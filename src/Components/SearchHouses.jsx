@@ -7,7 +7,8 @@ import CustomDropdown from "./CustomDrop";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { setServiceState } from "../store/stateManage";
 import { useDispatch } from "react-redux";
- 
+import ShimmerHouseCard from "./ShimmerHouseCard";
+
 const SearchHouses = () => {
   const [filters, setFilters] = useState({
     city: "",
@@ -27,13 +28,11 @@ const SearchHouses = () => {
     isFeatured: null,
     isActive: null,
   });
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-   
 
   useEffect(() => {
     const fetchAllHouses = async () => {
@@ -374,12 +373,13 @@ const SearchHouses = () => {
   );
 
   return (
-    <div    onClick={() => dispatch(setServiceState(false))} className="bg-green-950 py-8 pt-[100px]">
+    <div
+      onClick={() => dispatch(setServiceState(false))}
+      className="bg-green-950 py-8 pt-[100px]"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">
-            Search Properties
-          </h1>
+          <h1 className="text-3xl font-bold text-white">Search Properties</h1>
           <button
             onClick={() => setIsFilterOpen(true)}
             className="md:hidden flex items-center px-3 py-2 bg-green-800 text-white rounded-md hover:bg-green-900"
@@ -418,7 +418,10 @@ const SearchHouses = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between items-center p-6 border-b border-gray-200">
-                  <h2 style={{color:"black"}} className="text-lg font-semibold">
+                  <h2
+                    style={{ color: "black" }}
+                    className="text-lg font-semibold"
+                  >
                     Filter Properties
                   </h2>
                   <button
@@ -452,7 +455,14 @@ const SearchHouses = () => {
             )}
           </div>
           {loading ? (
-            <p className="text-gray-600 text-center">Loading...</p>
+            // <p className="text-gray-600 text-center">Loading...</p>
+            <div className="flex flex-wrap gap-4">
+              {Array(4)
+                .fill()
+                .map((_, i) => (
+                  <ShimmerHouseCard key={i} />
+                ))}
+            </div>
           ) : error ? (
             <p className="text-red-600 text-center">{error}</p>
           ) : houses.length === 0 ? (

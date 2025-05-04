@@ -51,8 +51,9 @@ const HouseCard = ({ house }) => {
     window.location.href = `/houses/${house._id}`;
     handleScrollToTop()
   };
-
+console.log(house,"house check loading")
   return (
+
     <AnimatedSection animationClass="zoom-in house-card ">
       <div
         onClick={housedetails}

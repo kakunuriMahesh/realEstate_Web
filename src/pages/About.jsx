@@ -1,7 +1,7 @@
 import React from "react";
 import aboutImg from "../assets/about_img.jpg";
 import { useLocation } from "react-router-dom";
-import teamImg from "../assets/team_img.jpg";
+import teamImg from "../assets/LanaPict.jpg";
 import StatsCounter from "../Components/StatsCounter";
 import AnimatedSection from "../Components/AnimatedSection";
 import SearchHouses from "../Components/SearchHouses";
@@ -50,10 +50,10 @@ const About = () => {
               <div className="w-full flex gap-4">
                 <div className="mt-6">
                   <AnimatedSection animationClass="slide-in-left">
-                    <h2 className="text-2xl font-semibold">Our Expertise</h2>
+                    <h2 className="text-2xl font-semibold mt-4 ">Our Expertise</h2>
                   </AnimatedSection>
                   <AnimatedSection animationClass="slide-in-left">
-                    <p className="mt-4  text-justify">
+                    <p className="mb-2 text-justify">
                       {/*  */}
                       In addition to residential real estate, Lana brings
                       valuable experience in investment properties. She has
@@ -73,7 +73,7 @@ const About = () => {
                 </div>
                 <AnimatedSection animationClass="zoom-out">
                   <img
-                    className="border-2 border-amber-50 max-md:hidden rounded-lg lg:w-[2750px] w-[2500px] md:h-[300px] object-cover"
+                    className="border-2 mt-4 border-amber-50 max-md:hidden rounded-lg lg:w-[2750px] w-[2500px] md:h-[300px] object-left"
                     src={teamImg}
                     alt="about-team"
                   />
@@ -83,8 +83,8 @@ const About = () => {
           </div>
           <AnimatedSection animationClass="slide-up">
             <div className="">
-              <h2 className="text-2xl font-semibold ">Our Commitment</h2>
-              <p className="text-justify mt-4">
+              <h2 className="text-2xl font-semibold mt-4 ">Our Commitment</h2>
+              <p className="text-justify mb-2">
                 Before launching Heights Realty, Lana worked in leasing for a
                 local management company. There, she helped countless
                 individuals and families — from students to professionals — find
@@ -99,7 +99,7 @@ const About = () => {
             <AnimatedSection animationClass="zoom-out">
               <div className="">
                 <img
-                  className="sm:hidden rounded-lg w-[1750px] h-[300px] object-cover"
+                  className="sm:hidden rounded-lg w-[1750px] h-[300px] object-fill mt-4 "
                   src={teamImg}
                   alt="about-team"
                 />
@@ -107,8 +107,8 @@ const About = () => {
             </AnimatedSection>
             <AnimatedSection animationClass="slide-up">
               <div className="mt-6">
-                <h2 className="text-2xl font-semibold">Our Vision</h2>
-                <p className="mt-4 text-justify">
+                <h2 className="text-2xl font-semibold mt-4 ">Our Vision</h2>
+                <p className="mb-2 text-justify">
                   Heights Realty was founded by Lana Radl, a Northeastern Ohio
                   (NEO) native with a deep-rooted passion for architecture and
                   city planning. Her journey began when she bought her first

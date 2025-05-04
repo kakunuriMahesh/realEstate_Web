@@ -4,6 +4,7 @@ import { getHouses } from "../services/api";
 import HouseCard from "../Components/HouseCardItems";
 import ScrollAnimation from "../Components/ScrollAnimatSmooth";
 import handleScrollToTop from "../Components/handleScrollToTop";
+import ShimmerHouseCard from "../Components/ShimmerHouseCard";
 
 const HouseListing = () => {
   const [houses, setHouses] = useState([]);
@@ -68,25 +69,48 @@ const HouseListing = () => {
             ))}
           </div>
         </ScrollAnimation>
-        
-          {loading ? (
-            <p className="text-gray-600 text-center">Loading...</p>
-          ) : error ? (
-            <p className="text-red-600 text-center">{error}</p>
-          ) : filteredHouses.length === 0 ? (
-            <p className="text-gray-600 text-center">No properties found.</p>
-          ) : (
-            <div className="flex">
-              <div className="flex flex-wrap justify-start items-start gap-2 ">
-                {filteredHouses.slice(0, 3).map((house) => (
-                  <HouseCard
-                    key={house._id}
-                    house={house}
-                    filteredHouses={filteredHouses}
-                  />
-                ))}
 
-                {/* {filteredHouses.length > 3 && (
+        {/* {loading ? (
+          <div className="flex flex-wrap gap-4">
+            {Array(4)
+              .fill()
+              .map((_, i) => (
+                <ShimmerHouseCard key={i} />
+              ))}
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-4">
+            {houses.map((house) => (
+              <HouseCard key={house._id} house={house} />
+            ))}
+          </div>
+        )} */}
+
+        {loading ? (
+          // <p className="text-gray-600 text-center">Loading...</p>
+          <div className="flex flex-wrap gap-4">
+            {Array(4)
+              .fill()
+              .map((_, i) => (
+                <ShimmerHouseCard key={i} />
+              ))}
+          </div>
+        ) : error ? (
+          <p className="text-red-600 text-center">{error}</p>
+        ) : filteredHouses.length === 0 ? (
+          <p className="text-gray-600 text-center">No properties found.</p>
+        ) : (
+          <div className="flex">
+            <div className="flex flex-wrap justify-start items-start gap-2 ">
+              {filteredHouses.slice(0, 3).map((house) => (
+                <HouseCard
+                  key={house._id}
+                  house={house}
+                  filteredHouses={filteredHouses}
+                />
+              ))}
+
+              {/* {filteredHouses.length > 3 && (
                   <div className="relative h-[400px] w-fit overflow-hidden rounded-lg">
                     <div
                       className="relative object-cover hover:scale-150 duration-300 bg-cover bg-center flex items-center justify-center rounded-lg shadow-md overflow-hidden h-[400px] w-[250px] sm:w-[280px] lg:w-[300px] cursor-pointer group"
@@ -104,37 +128,36 @@ const HouseListing = () => {
                   </div>
                 )} */}
 
-                {filteredHouses.length > 3 && (
-                  <div className="h-[330px] w-fit  overflow-hidden rounded-lg">
+              {filteredHouses.length > 3 && (
+                <div className="h-[330px] w-fit  overflow-hidden rounded-lg">
+                  <div
+                    className="relative h-[400px]  w-[250px] sm:w-[280px] lg:w-[300px] cursor-pointer group rounded-lg shadow-md overflow-hidden"
+                    onClick={() => {
+                      navigate("/properties");
+                      handleScrollToTop();
+                    }}
+                  >
+                    {/* Background Image with Scaling */}
                     <div
-                      className="relative h-[400px]  w-[250px] sm:w-[280px] lg:w-[300px] cursor-pointer group rounded-lg shadow-md overflow-hidden"
-                      onClick={() => {
-                        navigate("/properties");
-                        handleScrollToTop();
+                      className="absolute  inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-150"
+                      style={{
+                        backgroundImage: `url(${filteredHouses[3]?.coverImg.url})`,
                       }}
-                      
-                    >
-                      {/* Background Image with Scaling */}
-                      <div
-                        className="absolute  inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-150"
-                        style={{
-                          backgroundImage: `url(${filteredHouses[3]?.coverImg.url})`,
-                        }}
-                      ></div>
-                      {/* Darkening Overlay */}
-                      <div className="absolute inset-0 bg-black opacity-[0.5] group-hover:bg-opacity-50 transition-all duration-300"></div>
-                      {/* Stable Text */}
-                      <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-semibold z-40">
-                        <span className="p-3 bg-green-900 rounded-md">
-                          View All
-                        </span>
-                      </div>
+                    ></div>
+                    {/* Darkening Overlay */}
+                    <div className="absolute inset-0 bg-black opacity-[0.5] group-hover:bg-opacity-50 transition-all duration-300"></div>
+                    {/* Stable Text */}
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-semibold z-40">
+                      <span className="p-3 bg-green-900 rounded-md">
+                        View All
+                      </span>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+        )}
       </div>
     </div>
   );

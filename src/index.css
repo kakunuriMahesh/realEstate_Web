@@ -11,6 +11,33 @@
   font-style: normal;
 }
 
+/* SHIMMER */
+@keyframes shimmer {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    to right,
+    /* #e5e7eb 0%,
+    #f3f4f6 20%,
+    #e5e7eb 40%,
+    #e5e7eb 100% */
+    #d0d1d3 0%,
+    #f3f4f6 20%,
+    #d0d1d3 40%,
+    #d0d1d3 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+/* SHIMMER */
+
 .desktop-nav {
   display: none;
 }
