@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getHouseById } from "../services/api";
@@ -372,7 +371,7 @@ const PropertyDetails = () => {
           </div>
         </div>
       </div>
-      <MortgageCalculator price={house.price} />
+      {house.status != "Rent" && <MortgageCalculator price={house.price} />}
       <RelatedHouses
         currentHouseId={house._id}
         propertyType={house.propertyType}
@@ -388,9 +387,7 @@ const PropertyDetails = () => {
 
 export default PropertyDetails;
 
-
 // FIXME:
-
 
 // import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
@@ -794,9 +791,7 @@ export default PropertyDetails;
 
 // export default PropertyDetails;
 
-
 // TODO: where images morethen 4 images
-
 
 // import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
@@ -869,20 +864,18 @@ export default PropertyDetails;
 //   const [error, setError] = useState(null);
 //   const [modalImageIndex, setModalImageIndex] = useState(null);
 
-   
-
 //   useEffect(() => {
 //     const fetchHouse = async () => {
 //       try {
 //         // const response = await getHouses();
 //         const response = await getHouseById(id);
-        
+
 //         // const house = response.data.find((h) => h._id === id);
 //         console.log(response,"houseresponse")
 //         const house  = response.data
 //         if (!house) throw new Error("House not found");
 //         setHouse(house);
-//         setLoading(false); 
+//         setLoading(false);
 //       } catch (err) {
 //         console.error("Error fetching house:", err);
 //         setError("Failed to load house details.");

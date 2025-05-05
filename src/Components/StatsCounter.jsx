@@ -93,8 +93,9 @@ const StatsCounter = () => {
       setError(null);
       try {
         const response = await getStats();
-        const data = Array.isArray(response.data) ? response.data : [];
+        const data = Array.isArray(response) ? response : [];
         // Transform API data to match Counter props
+        console.log(response,data,"check stats")
         const transformedStats = data.map((stat) => ({
           value: stat.value,
           prefix: stat.title.includes("$") ? "$" : stat.title.includes("#") ? "#" : "",

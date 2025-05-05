@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import handleScrollToTop from '../Components/handleScrollToTop';
 
 const ServicesScroll = () => {
 
@@ -13,8 +14,10 @@ const ServicesScroll = () => {
           {brands.concat(brands).map((brand, idx) => (
             <Link
               key={idx}
-              to={`/${brand.toLowerCase()}`}
+              // to={`/${brand.toLowerCase()}`}
+              to={`/contact`}
               className="brand-item"
+              onClick={()=>handleScrollToTop()}
             >
               {brand}
             </Link>

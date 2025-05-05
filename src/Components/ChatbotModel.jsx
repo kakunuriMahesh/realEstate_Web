@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MessageCircle, X } from "lucide-react";
+import handleScrollToTop from "./handleScrollToTop";
 
 const ChatbotModel = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState(0);
-  const [userData, setUserData] = useState({ intent: "", budget: "" });
+  const [userData, setUserData] = useState({ intent: "" });
   const navigate = useNavigate();
 
   const questions = [
@@ -14,23 +14,14 @@ const ChatbotModel = () => {
       options: ["Buy", "Rent", "Sell"],
       key: "intent",
     },
-    {
-      text: "What is your budget range?",
-      options: ["Under $200,000", "$200,000 - $500,000", "Over $500,000"],
-      key: "budget",
-    },
   ];
 
   const handleOptionClick = (option) => {
-    setUserData({ ...userData, [questions[step].key]: option });
-    if (step < questions.length - 1) {
-      setStep(step + 1);
-    } else {
-      navigate(`/contact?intent=${encodeURIComponent(option)}&budget=${encodeURIComponent(userData.budget)}`);
-      setIsOpen(false);
-      setStep(0);
-      setUserData({ intent: "", budget: "" });
-    }
+    setUserData({ intent: option });
+    navigate(`/contact?intent=${encodeURIComponent(option)}`);
+    handleScrollToTop()
+    setIsOpen(false);
+    setUserData({ intent: "" });
   };
 
   return (
@@ -47,9 +38,9 @@ const ChatbotModel = () => {
             </button>
           </div>
           <div className="mb-4">
-            <p className="text-sm text-gray-600">{questions[step].text}</p>
+            <p className="text-sm text-gray-600">{questions[0].text}</p>
             <div className="mt-2 space-y-2">
-              {questions[step].options.map((option) => (
+              {questions[0].options.map((option) => (
                 <button
                   key={option}
                   onClick={() => handleOptionClick(option)}
