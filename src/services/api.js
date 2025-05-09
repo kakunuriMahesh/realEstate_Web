@@ -90,6 +90,42 @@ export const createContact = async (contactData) => {
   }
 };
 
+// TODO: updating subscriptions api
+
+export const subscribe = async (email) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/subscribe`,
+      { email },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(response.data, "response.data subscribe");
+    return response;
+  } catch (error) {
+    console.error("Error subscribing:", error);
+    throw error;
+  }
+};
+
+export const unsubscribe = async (email) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/unsubscribe`,
+      { email },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(response.data, "response.data unsubscribe");
+    return response;
+  } catch (error) {
+    console.error("Error unsubscribing:", error);
+    throw error;
+  }
+};
+
 // FIXME: testmonials, newsLetters, Stats 
 
 // TODO: testmonials:
