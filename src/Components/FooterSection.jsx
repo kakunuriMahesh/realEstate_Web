@@ -14,6 +14,7 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 import { subscribe, unsubscribe } from "../services/api";
 import logo from "../assets/Cloverrealitylogo.png";
+import howardhanna from"../assets/logo.svg"
 
 const FooterSection = () => {
   const [email, setEmail] = useState("");
@@ -196,6 +197,15 @@ const FooterSection = () => {
                 </li>
               </ul>
             </div>
+            {/* IconImg */}
+            <Link to="https://www.howardhanna.com/Agent/Detail/Lana-Radl/72946">
+              <img
+                src={howardhanna}
+                alt="Dream Homes Realty"
+                className="h-16 w-auto mb-4"
+              />
+            </Link>
+
 
             {/* Newsletter */}
             <div>
